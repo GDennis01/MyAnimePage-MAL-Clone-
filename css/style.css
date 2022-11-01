@@ -1,0 +1,38 @@
+/* Debug css rule */
+* {
+  /* outline: 1px solid red; */
+}
+body {
+  background-color: aquamarine;
+}
+
+nav.navbar * {
+  background-color: yellowgreen;
+}
+#sugg_anime{
+  display:inline;
+  text-align: center;
+}
+
+aside{
+  background-color: yellow;
+  float: right;
+  width: 30%;
+  height: 50%;
+}
+#carouselContainer {
+  display: inline-block;
+  margin-left: 10%;
+  margin-top: 1%;
+  width: 30%;
+  height: 10%;
+  /* outline: 1px solid black; */
+}
+
+footer {
+  position:fixed;
+  bottom:0;
+  left: 45%;
+  text-align: center;
+  margin-bottom:0;
+}

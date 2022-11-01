@@ -1,0 +1,131 @@
+<!-- TODO: not-logged-in guard in php -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- js bootstrap library -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <!-- css bootstrap library -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <!-- custom css library -->
+  <link href="css/style.css" rel="stylesheet">
+  <title>My Anime Page</title>
+</head>
+
+<!-- <body class="p-3 m-0 border-0 bd-example"> -->
+
+<body>
+  <!-- HEADER -->
+  <header>
+    
+  </header>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg ">
+
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">My anime page</a>
+      <!--Button that shows up when windows shrink
+            as the "data-bs-target" implies, it targets the indicated element, in this case the div that wraps up the whole navbar-->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Home -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Random anime page</a>
+          </li> -->
+        </ul>
+        <!-- Search bar -->
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+
+    </div>
+  </nav>
+  <!-- Carousel -->
+  <div id="carouselContainer">
+    <div id="sugg_anime">
+      <h3>Top suggested anime!</h3>
+    </div>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <!-- Actual carousel -->
+      <!-- ids and img should be replaced when body loads by an ajax function that generates 3 random number from 
+          the pool of mal ids in the database -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="img/notavailable.png" class="w-100" alt="..." width="240px">
+        </div>
+        <div class="carousel-item">
+          <img src="img/notavailable2.png" class="w-100" alt="..." width="240px">
+        </div>
+        <div class="carousel-item">
+          <img src="img/notavailable3.png" class="w-100" alt="..." width="240px">
+        </div>
+      </div>
+      <!-- Current active carousel anime synopsis-->
+      <!--  Search through the dom for carousel-item active, then get its mal id, ajax it to the db to find its
+            Synopsis and innerHTML'd it here -->
+      <div id="carouselSynopsis">
+        <p>Here goes the synopsis of the current active anime</p>
+      </div>
+      <!-- Carousel control buttons -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
+    </div>
+  </div>
+  <!-- Aside -->
+  <aside>
+    <!-- Stats of the user -->
+    <ul>
+      <li>Nome account:</li>
+      <li>Data creazione account</li>
+      <li>Anime visti:</li>
+      <li>Anime da vedere:</li>
+    </ul>
+
+  </aside>
+  <!-- Footer -->
+  <footer>
+          <p>Copyright @ Dennis Gobbi2022</p>
+  </footer>
+</body>
+
+</html>
