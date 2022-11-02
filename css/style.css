@@ -2,24 +2,34 @@
 * {
   /* outline: 1px solid red; */
 }
+/* common css */
 body {
   background-color: aquamarine;
 }
 
 nav.navbar * {
   background-color: yellowgreen;
-}
-#sugg_anime{
-  display:inline;
-  text-align: center;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
-aside{
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 45%;
+  text-align: center;
+  margin-bottom: 0;
+}
+/* end common css */
+
+/* index.html */
+aside {
   background-color: yellow;
   float: right;
   width: 30%;
   height: 50%;
 }
+
 #carouselContainer {
   display: inline-block;
   margin-left: 10%;
@@ -29,10 +39,21 @@ aside{
   /* outline: 1px solid black; */
 }
 
-footer {
-  position:fixed;
-  bottom:0;
-  left: 45%;
+#sugg_anime {
+  display: inline;
   text-align: center;
-  margin-bottom:0;
 }
+
+/* end index.html */
+
+/* anime.php */
+#animeInfo {
+  display: inline-block;
+  margin-left: 1%;
+  margin-top: 1%;
+  width: 30%;
+  height: 90%;
+  outline: 1px solid black;
+  clear: both;
+}
+/* end anime.php */

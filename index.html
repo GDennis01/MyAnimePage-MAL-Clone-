@@ -29,7 +29,7 @@
   <nav class="navbar navbar-expand-lg ">
 
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">My anime page</a>
+      <a class="navbar-brand" href="myanimepage.php">My anime page</a>
       <!--Button that shows up when windows shrink
             as the "data-bs-target" implies, it targets the indicated element, in this case the div that wraps up the whole navbar-->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -42,6 +42,10 @@
           <!-- Home -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <!-- Random Anime page -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="anime.php">Random anime</a>
           </li>
           <!-- Dropdown -->
           <li class="nav-item dropdown">
@@ -95,7 +99,7 @@
       <!--  Search through the dom for carousel-item active, then get its mal id, ajax it to the db to find its
             Synopsis and innerHTML'd it here -->
       <div id="carouselSynopsis">
-        <p>Here goes the synopsis of the current active anime</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum officiis, accusamus optio quos assumenda magnam ut est nemo dignissimos, temporibus numquam libero veritatis rerum odio inventore ipsam beatae, eligendi eveniet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ab voluptates et in nulla consectetur amet at error voluptas veniam illum delectus repellendus similique tenetur libero repellat sed, illo minus.</p>
       </div>
       <!-- Carousel control buttons -->
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
