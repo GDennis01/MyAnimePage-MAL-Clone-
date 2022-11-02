@@ -5,10 +5,10 @@ $conn = dbConn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?= head() ?>
+<?php include 'templates/header.html' ?>
 
 <body>
-  <?= navbar() ?>
+  <?php include 'templates/navbar.html'?>
 
   <!-- Aside left div with anime information  -->
   <div id="animeInfo">
@@ -27,7 +27,10 @@ $conn = dbConn();
       </ul>
     </div>
   </div>
-  <?= footer() ?>
+  <div>
+    
+  </div>
+  <?php include 'templates/footer.html' ?>
 </body>
 
 </html>

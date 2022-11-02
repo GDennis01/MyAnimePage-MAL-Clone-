@@ -5,10 +5,10 @@ $conn = dbConn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?= head() ?>
+<?php include 'templates/header' ?>
 
 <body>
-  <?= navbar() ?>
+<?php include 'templates/navbar' ?>
   <!-- Printing a table with all anime -->
   <div class="container">
     <div class="row">
@@ -26,6 +26,8 @@ $conn = dbConn();
           </thead>
           <tbody>
             <?php
+            // TODO: get user id from session
+            // TODO: using ajax to print the table
             $sql = "SELECT * FROM anime_list";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
@@ -47,7 +49,7 @@ $conn = dbConn();
         </table>
       </div>
     </div>
-  <?= footer() ?>
+  <?php include 'templates/footer' ?>
 </body>
 
 </html>
