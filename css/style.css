@@ -2,9 +2,10 @@
 * {
   /* outline: 1px solid red; */
 }
-/* common css */
+/*--- common css ---*/
 body {
   background-color: aquamarine;
+  overflow-x:hidden;
 }
 
 nav.navbar * {
@@ -20,9 +21,8 @@ footer {
   text-align: center;
   margin-bottom: 0;
 }
-/* end common css */
 
-/* index.html */
+/*--- index.html ---*/
 aside {
   background-color: yellow;
   float: right;
@@ -44,16 +44,43 @@ aside {
   text-align: center;
 }
 
-/* end index.html */
 
-/* anime.php */
+/*--- anime.php----*/
 #animeInfo {
-  display: inline-block;
-  margin-left: 1%;
+  float:left;
+  float:left;
+  margin-left: 5em;
   margin-top: 1%;
+  width: auto;
+  height: 100%;
+  /* clear: both; */
+}
+
+#animeCtrl {
+  /* float:left;
+  margin-top:1%;
+  left:1%;
   width: 30%;
   height: 90%;
-  outline: 1px solid black;
-  clear: both;
+  clear: both; */
+}
+
+#animeSynopsis {
+  /* background-color: yellow;
+  float:left;
+  top:1%;
+  width: 30%;
+  height: 50%; */
+}
+.charaReview{
+  margin-top:1%;
+}
+#animeCharacters {
+  top:1%;
+  margin-left:10%;
+}
+#animeReviews {
+  justify-content: center;
+  margin-left:1%;
 }
 /* end anime.php */
