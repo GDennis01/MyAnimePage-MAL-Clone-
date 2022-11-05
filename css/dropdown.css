@@ -1,0 +1,59 @@
+/* change 5 to the number of items you want to show at start of dropdown */
+ /* 1em = font height, 8px from outline + padding*/
+ /* max-height and not height for when search has less results */
+ 
+ #myDropdown {
+  max-height: calc(4 * (1em + 8px));
+}
+
+/* rest of your css */
+
+.dropdown .search-area {
+    box-sizing: border-box;
+    background-image: url("searchicon.png");
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding-top:5px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown .search-area:focus {
+    outline: 3px solid #ddd;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    left:35px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content span {
+    color: black;
+    padding-top:5px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown div:hover {
+    background-color: #ddd;
+}
+.dropdown div {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+input#search_input {
+    min-width: 191px;
+}

@@ -38,14 +38,14 @@ $conn = dbConn();
       <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Anime image" id="animeImg">
       <div class="animeStats">
         <ul>
-          <li>Anime name: <?=$name ?></li>
-          <li>Japanese name:<?=$jap_name ?></li>
-          <li>Episodes:<?=$episode?></li>
-          <li>Studio:Aniplex<?=$studio?></li>
-          <li>First aired:2011<?=$premiered?></li>
-          <li>Type: <?=$type?></li>
-          <li>Source: <?=$source?></li>
-          <li>Genre: <?=$genre?></li>
+          <li><b>Anime name:</b> <?=$name ?></li>
+          <li><b>Japanese name:</b> <?=$jap_name ?></li>
+          <li><b>Episodes:</b> <?=$episode?></li>
+          <li><b>Studio:</b> <?=$studio?></li>
+          <li><b>First aired:</b> <?=$premiered?></li>
+          <li><b>Type:</b> <?=$type?></li>
+          <li><b>Source:</b> <?=$source?></li>
+          <li><b>Genre:</b> <?=$genre?></li>
         </ul>
       </div>
     </div>

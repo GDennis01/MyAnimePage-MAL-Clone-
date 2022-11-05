@@ -43,8 +43,13 @@
     <form class="d-flex" role="search">
       <input id="searchAnime" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" oninput="getAjaxRes()">
       <!-- search result -->
-      <div id="search-result" class="search-result"></div>
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
 </nav>
+<div class="dropdown">
+  <input type="search" oninput="getAjaxRes()" onclick="openSearchDropdown()" id="search_input" />
+  <div id="myDropdown" class="dropdown-content">
+
+  </div>
+</div>
