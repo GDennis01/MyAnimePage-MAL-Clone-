@@ -5,10 +5,10 @@ $conn = dbConn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'templates/header' ?>
+<?php include 'templates/header.html' ?>
 
 <body>
-<?php include 'templates/navbar' ?>
+<?php include 'templates/navbar.html' ?>
   <!-- Printing a table with all anime -->
   <div class="container">
     <div class="row">
@@ -20,7 +20,7 @@ $conn = dbConn();
               <th scope="col">Title</th>
               <th scope="col">Episodes</th>
               <th scope="col">Score</th>
-              <th scope="col">Status</th>
+              <th scope="col">Studio</th>
               <!-- <th scope="col">Image</th> -->
             </tr>
           </thead>
@@ -49,7 +49,7 @@ $conn = dbConn();
         </table>
       </div>
     </div>
-  <?php include 'templates/footer' ?>
+  <?php include 'templates/footer.html' ?>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 /* Debug css rule */
-* {
-  /* outline: 1px solid red; */
+*:hover {
+  outline: 1px solid blue;
 }
 /*--- common css ---*/
 body {
@@ -45,42 +45,3 @@ aside {
 }
 
 
-/*--- anime.php----*/
-#animeInfo {
-  float:left;
-  float:left;
-  margin-left: 5em;
-  margin-top: 1%;
-  width: auto;
-  height: 100%;
-  /* clear: both; */
-}
-
-#animeCtrl {
-  /* float:left;
-  margin-top:1%;
-  left:1%;
-  width: 30%;
-  height: 90%;
-  clear: both; */
-}
-
-#animeSynopsis {
-  /* background-color: yellow;
-  float:left;
-  top:1%;
-  width: 30%;
-  height: 50%; */
-}
-.charaReview{
-  margin-top:1%;
-}
-#animeCharacters {
-  top:1%;
-  margin-left:10%;
-}
-#animeReviews {
-  justify-content: center;
-  margin-left:1%;
-}
-/* end anime.php */

@@ -13,7 +13,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Home -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <!-- Random Anime page -->
         <li class="nav-item">
@@ -39,11 +39,12 @@
         </li> -->
       </ul>
       <!-- Search bar -->
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
-
+    <form class="d-flex" role="search">
+      <input id="searchAnime" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" oninput="getAjaxRes()">
+      <!-- search result -->
+      <div id="search-result" class="search-result"></div>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
   </div>
 </nav>
