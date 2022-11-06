@@ -12,7 +12,7 @@ if (mysqli_num_rows($result) > 0) {
         $json[] = $row;
     }
 } else {
-    $json = "0 results";
+    $json = "";
 }
 mysqli_close($db);
 echo json_encode($json);

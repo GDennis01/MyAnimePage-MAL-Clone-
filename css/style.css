@@ -24,7 +24,8 @@ footer {
 
 /*--- index.html ---*/
 aside {
-  background-color: yellow;
+  border-radius: 10px;
+  background-image: linear-gradient( #00b09b, #96c93d);
   float: right;
   width: 30%;
   height: 50%;
