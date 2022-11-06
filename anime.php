@@ -1,6 +1,6 @@
 <!-- TODO: not-logged-in guard in php -->
 <?php
-include 'utils.php';
+include 'api/utils.php';
 $conn = dbConn();
 ?>
 <!DOCTYPE html>
