@@ -1,5 +1,10 @@
-<!-- TODO: not-logged-in guard in php -->
 <?php
+session_start();
+if (!isset($_SESSION['logged'])){
+  header("Location: login.php");
+  return;
+}
+$user = $_SESSION['id'];
 include 'api/utils.php';
 $conn = dbConn();
 ?>
@@ -26,9 +31,10 @@ $conn = dbConn();
           </thead>
           <tbody>
             <?php
-            // TODO: get user id from session
+
             // TODO: using ajax to print the table
-            $sql = "SELECT * FROM anime_list";
+            // TODO: remove the anime from the list: make a button that sends a post request to the server
+            $sql = "SELECT Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime WHERE anime_user.id_user = '$user'";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
@@ -37,11 +43,12 @@ $conn = dbConn();
                 echo "<td>" . $row["Episodes"] . "</td>";
                 echo "<td>" . $row["Score"] . "</td>";
                 echo "<td>" . $row["Studios"] . "</td>";
+                //print a button to delete anime
+                echo "<td><button type='button' class='btn btn-danger'>Delete</button></td>";
                 // echo "<td>" . $row["image"] . "</td>";
                 echo "</tr>";
               }
             } else {
-              echo "0 results";
             }
             mysqli_close($conn);
             ?>

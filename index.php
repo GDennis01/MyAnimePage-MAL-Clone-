@@ -1,4 +1,14 @@
-<!-- TODO: not-logged-in guard in php -->
+<?php
+session_start();
+if (!isset($_SESSION['logged'])){
+    header("Location: login.php");
+  return;
+}
+$user = $_SESSION['id'];
+$date = $_SESSION['date'];
+$watched = $_SESSION['watched'];
+$p2w = $_SESSION['p2w'];
+?>
 <!doctype html>
 <html lang="en">
 
@@ -56,10 +66,9 @@
         <aside>
           <!-- Stats of the user -->
           <ul>
-            <li>Nome account:</li>
-            <li>Data creazione account</li>
-            <li>Anime visti:</li>
-            <li>Anime da vedere:</li>
+            <li>Nome account: <?=$user?></li>
+            <li>Data creazione account: <?=$date?></li>
+            <li>Anime visti: <?=$watched?></li>
           </ul>
 
         </aside>
