@@ -42,31 +42,41 @@ function appendSelectedAnime() {
   $("#selected-anime").append(anime);
 }
 
-// function openSearchDropdown() {
-//   document.getElementById("myDropdown").classList.toggle("show");
-// }
+function checkLogin(){
 
-// function closeSearchDropdown() {
-//   document.getElementById("myDropdown").classList.toggle("show");
-// }
+    let username = $("#username").val();
+    let password = $("#pw").val();
+    $.ajax({
+      url: "api/login.php",
+      type: "POST",
+      data: {username: username, password: password},
+      dataType: "json",
+      success: function(response){
+        console.log(response);
+        if(response == "success"){
+          window.location.href = "index.php";
+        }else{
+        $("#login-error").html(response);
+      }
+      }
+    })
+}
 
-// function selectFilteredValue() {
-//   document.getElementById("search_input").value  = event.target.getAttribute("data-value");
-//   closeSearchDropdown();
-// }
-
-// function filterSearchDropdown() {
-//   var input, filter, ul, li, span, i;
-//   input = document.getElementById("search_value");
-//   filter = input.value.toUpperCase();
-//   div = document.getElementById("myDropdown");
-//   span = div.getElementsByTagName("span");
-//   for (i = 0; i < span.length; i++) {
-//       txtValue = span[i].textContent || span[i].innerText;
-//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//           span[i].style.display = "";
-//       } else {
-//           span[i].style.display = "none";
-//       }
-//   }
-// }
+function checkRegistrati(){
+    let username = $("#username").val();
+    let password = $("#pw").val();
+    $.ajax({
+      url: "api/registrati.php",
+      type: "POST",
+      data: {username: username, password: password},
+      dataType: "json",
+      success: function(response){
+        console.log(response);
+        if(response == "success"){
+          window.location.href = "index.php";
+        }else{
+        $("#login-error").html(response);
+      }
+      }
+    })
+}
