@@ -19,6 +19,8 @@ if(mysqli_num_rows($result) == 1){//Se la query restituisce una table con UNA so
   session_start();         
   $_SESSION['id']=$user;
   $_SESSION['logged']=true;
+  $_SESSION['data']=$date;
+  $_SESSION['watched']=0;
   echo json_encode("success");
 }
 ?>
