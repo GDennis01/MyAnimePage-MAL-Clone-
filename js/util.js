@@ -11,6 +11,7 @@ function getAjaxRes() {
         //console.log(response);
           $("#myDropdown").empty();
           let anime = "";
+          console.log(response);
           for (let i = 0; i < response.length; i++) {
             anime = '<a href="anime.php?id='+response[i].id+'" class="show"><option class="anime" id="'+response[i].id+'">'+response[i].name+'</option></a>';
             // console.log(anime);
@@ -22,7 +23,18 @@ function getAjaxRes() {
     })
   }
 }
-
+function randomAnime() {
+  $.ajax({
+    url: "api/random.php",
+    type: "GET",
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      //redirect
+      window.location.href = "anime.php?id="+response;
+    }
+  })
+}
 function appendSelectedAnime() {
   let id = event.target.id;
   let title = event.target.innerHTML;
@@ -30,31 +42,31 @@ function appendSelectedAnime() {
   $("#selected-anime").append(anime);
 }
 
-function openSearchDropdown() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+// function openSearchDropdown() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
 
-function closeSearchDropdown() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+// function closeSearchDropdown() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
 
-function selectFilteredValue() {
-  document.getElementById("search_input").value  = event.target.getAttribute("data-value");
-  closeSearchDropdown();
-}
+// function selectFilteredValue() {
+//   document.getElementById("search_input").value  = event.target.getAttribute("data-value");
+//   closeSearchDropdown();
+// }
 
-function filterSearchDropdown() {
-  var input, filter, ul, li, span, i;
-  input = document.getElementById("search_value");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  span = div.getElementsByTagName("span");
-  for (i = 0; i < span.length; i++) {
-      txtValue = span[i].textContent || span[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          span[i].style.display = "";
-      } else {
-          span[i].style.display = "none";
-      }
-  }
-}
+// function filterSearchDropdown() {
+//   var input, filter, ul, li, span, i;
+//   input = document.getElementById("search_value");
+//   filter = input.value.toUpperCase();
+//   div = document.getElementById("myDropdown");
+//   span = div.getElementsByTagName("span");
+//   for (i = 0; i < span.length; i++) {
+//       txtValue = span[i].textContent || span[i].innerText;
+//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//           span[i].style.display = "";
+//       } else {
+//           span[i].style.display = "none";
+//       }
+//   }
+// }

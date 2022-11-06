@@ -17,7 +17,8 @@
         </li>
         <!-- Random Anime page -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="anime.php">Random anime</a>
+          <!-- <a class="nav-link active" aria-current="page" href="anime.php">Random anime</a> -->
+          <span class="nav-link active" aria-current="page" onclick="randomAnime()">Random anime</span>
         </li>
         <!-- Dropdown -->
         <li class="nav-item dropdown">
@@ -40,16 +41,16 @@
       </ul>
       <!-- Search bar -->
     </div>
-    <form class="d-flex" role="search">
-      <input id="searchAnime" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" oninput="getAjaxRes()">
+    <form class="d-flex" role="search" method="POST" action="anime.php">
+      <!-- <input id="searchAnime" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" oninput="getAjaxRes()"> -->
       <!-- search result -->
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+      <div class="dropdown">
+        <input type="search" oninput="getAjaxRes()" onclick="openSsearchDropdown()" id="search_input" />
+        <div id="myDropdown" class="dropdown-content show">
+      
+        </div>
+      </div>
     </form>
   </div>
 </nav>
-<div class="dropdown">
-  <input type="search" oninput="getAjaxRes()" onclick="openSearchDropdown()" id="search_input" />
-  <div id="myDropdown" class="dropdown-content">
-
-  </div>
-</div>
