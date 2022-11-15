@@ -39,7 +39,6 @@ $conn = dbConn();
     $sql = "SELECT * FROM anime_list WHERE mal_id = $value";
     $result = mysqli_query($conn, $sql);
     $anime = mysqli_fetch_assoc($result);
-
     $id_user = $_SESSION['id'];
 
     $name = $anime['Name'];
@@ -107,11 +106,15 @@ $conn = dbConn();
       <div id="animeReviews">
         <h3>Reviews</h3>
         <ul>
-          <li>Review 1</li>
-          <li>Review 2</li>
-          <li>Review 3</li>
-          <li>Review 4</li>
-          <li>Review 5</li>
+          <!-- print all reviews -->
+          <?php
+          $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = $value";
+          $result = mysqli_query($conn, $sql);
+          while ($rows = mysqli_fetch_assoc($result)) : ?>
+            <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?> </li>
+          <?php
+          endwhile;
+          ?>
         </ul>
       </div>
     </div>
