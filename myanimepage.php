@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['logged'])){
+if (!isset($_SESSION['logged'])) {
   header("Location: login.php");
   return;
 }
@@ -13,7 +13,7 @@ $conn = dbConn();
 <?php include 'templates/header.html' ?>
 
 <body>
-<?php include 'templates/navbar.html' ?>
+  <?php include 'templates/navbar.html' ?>
   <!-- Printing a table with all anime -->
   <div class="container">
     <div class="row">
@@ -31,22 +31,32 @@ $conn = dbConn();
           </thead>
           <tbody>
             <?php
-
+            error_reporting(0);
             // TODO: using ajax to print the table
             // TODO: remove the anime from the list: make a button that sends a post request to the server
             $sql = "SELECT Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime WHERE anime_user.id_user = '$user'";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row["Name"] . "</td>";
-                echo "<td>" . $row["Episodes"] . "</td>";
-                echo "<td>" . $row["Score"] . "</td>";
-                echo "<td>" . $row["Studios"] . "</td>";
-                //print a button to delete anime
-                echo "<td><button type='button' class='btn btn-danger'>Delete</button></td>";
-                // echo "<td>" . $row["image"] . "</td>";
-                echo "</tr>";
+                // echo "<tr>";
+                // echo "<td>" . $row["Name"] . "</td>";
+                // echo "<td>" . $row["Episodes"] . "</td>";
+                // echo "<td>" . $row["Score"] . "</td>";
+                // echo "<td>" . $row["Studios"] . "</td>";
+                // //print a button to delete anime
+                // echo "<td><button type='button' class='btn btn-danger'>Delete</button></td>";
+                // // echo "<td>" . $row["image"] . "</td>";
+                // echo "</tr>";
+            ?>
+                <tr>
+                  <td> <?= $row['Name'] ?> </td>
+                  <td> <?= $row['Episodes'] ?> </td>
+                  <td> <?= $row['Score'] ?> </td>
+                  <td> <?= $row['Studios'] ?> </td>
+                  <td><button type='button' class='btn btn-danger'>Delete</button></td>
+                  <td> <?= $row['image'] ?> </td>
+                </tr>
+            <?php
               }
             } else {
             }
@@ -56,7 +66,7 @@ $conn = dbConn();
         </table>
       </div>
     </div>
-  <?php include 'templates/footer.html' ?>
+    <?php include 'templates/footer.html' ?>
 </body>
 
 </html>
