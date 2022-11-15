@@ -26,12 +26,14 @@ $conn = dbConn();
               <th scope="col">Episodes</th>
               <th scope="col">Score</th>
               <th scope="col">Studio</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
               <!-- <th scope="col">Image</th> -->
             </tr>
           </thead>
           <tbody>
             <?php
-            error_reporting(0);
+            // error_reporting(0);
             // TODO: using ajax to print the table
             // TODO: remove the anime from the list: make a button that sends a post request to the server
             $sql = "SELECT MAL_ID,Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime WHERE anime_user.id_user = '$user'";
@@ -56,7 +58,8 @@ $conn = dbConn();
                   <td> <?= $row['Score'] ?> </td>
                   <td> <?= $row['Studios'] ?> </td>
                   <td><button type='button' class='btn btn-danger' onclick="deleteEntry(<?= $id_user ?>,<?= $mal_id ?>)">Delete</button></td>
-                  <td> <?= $row['image'] ?> </td>
+                  <td><button type='button' class='btn btn-info' onclick="goesToAnimePage(<?= $mal_id ?>)">Visit Anime Page</button></td>
+                  <td> <?= $row['image'] ?? "" ?> </td>
                 </tr>
             <?php
               }
