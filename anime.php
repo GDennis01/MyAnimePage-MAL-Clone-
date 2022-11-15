@@ -24,6 +24,16 @@ $conn = dbConn();
     <?php
     $value = $_GET['id'];
     $id_user = $_SESSION['id'];
+
+    $checkIfAdded = "SELECT * FROM anime_user WHERE id_user = $id_user AND id_anime = $value";
+    $result = mysqli_query($conn, $checkIfAdded);
+    if (mysqli_num_rows($result) > 0) {
+      $added = true;
+      $text = "Added to list";
+    } else {
+      $added = false;
+      $text = "Add to list";
+    }
     //fetch anime with value
     $sql = "SELECT * FROM anime_list WHERE mal_id = $value";
     $result = mysqli_query($conn, $sql);
@@ -59,7 +69,14 @@ $conn = dbConn();
     <div id="ctrlSyn" class="col-5">
       <div id="animeCtrl">
         <!-- bootstrap button -->
-        <button type="button" class="btn btn-primary" onclick="addToList(<?= $value ?>,<?= $id_user ?>)">Add to my list</button>
+        <button id="btnAddList" type="button" class="btn btn-primary" <?php if ($added) {
+                                                                        echo "disabled='disabled'";
+                                                                      } else {
+                                                                        echo "onclick=\"addToList($value,$id_user)\"";
+                                                                      }     ?>>
+
+          <?= $text ?>
+        </button>
         <button type="button" class="btn btn-primary">Rate</button>
 
       </div>

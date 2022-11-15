@@ -62,7 +62,8 @@ function addToList(mal_id, id_user) {
     success: function (response) {
       console.log(response);
       if (response == "success") {
-        $("#addToList button").html("Added to list");
+        $("#btnAddList").html("Already added to list");
+        $("#btnAddList").attr("disabled", true);
       } else {
         $("#login-error").html(response);
       }
