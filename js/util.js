@@ -55,7 +55,7 @@ function logout() {
 
 function addToList(mal_id, id_user) {
   $.ajax({
-    url: "api/addList.php",
+    url: "api/anime/addList.php",
     type: "POST",
     data: { mal_id: mal_id, id_user: id_user },
     dataType: "json",
