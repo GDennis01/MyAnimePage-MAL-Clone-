@@ -44,7 +44,7 @@ function appendSelectedAnime() {
 
 function logout() {
   $.ajax({
-    url: "api/logout.php",
+    url: "api/user/logout.php",
     type: "GET",
     success: function (response) {
       console.log(response);
@@ -75,7 +75,7 @@ function checkLogin() {
   let username = $("#username").val();
   let password = $("#pw").val();
   $.ajax({
-    url: "api/login.php",
+    url: "api/user/login.php",
     type: "POST",
     data: { username: username, password: password },
     dataType: "json",
@@ -94,7 +94,7 @@ function checkRegistrati() {
   let username = $("#username").val();
   let password = $("#pw").val();
   $.ajax({
-    url: "api/registrati.php",
+    url: "api/user/registrati.php",
     type: "POST",
     data: { username: username, password: password },
     dataType: "json",
