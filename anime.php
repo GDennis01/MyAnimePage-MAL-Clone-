@@ -25,11 +25,12 @@ $conn = dbConn();
     $value = $_GET['id'];
     $id_user = $_SESSION['id'];
 
+    // Check if the anime has been already added to the user's list
     $checkIfAdded = "SELECT * FROM anime_user WHERE id_user = $id_user AND id_anime = $value";
     $result = mysqli_query($conn, $checkIfAdded);
     if (mysqli_num_rows($result) > 0) {
       $added = true;
-      $text = "Added to list";
+      $text = "Already added to your anime page";
     } else {
       $added = false;
       $text = "Add to list";
@@ -38,6 +39,8 @@ $conn = dbConn();
     $sql = "SELECT * FROM anime_list WHERE mal_id = $value";
     $result = mysqli_query($conn, $sql);
     $anime = mysqli_fetch_assoc($result);
+
+    $id_user = $_SESSION['id'];
 
     $name = $anime['Name'];
     $jap_name = $anime['Japanese name'];
@@ -49,6 +52,7 @@ $conn = dbConn();
     $genre = $anime['Genres'];
     $syn = $anime['synopsis'];
     ?>
+    <!-- Anime info -->
     <div id="animeInfo" class="col-3">
       <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Anime image" id="animeImg">
       <div class="animeStats">
@@ -89,13 +93,14 @@ $conn = dbConn();
 
   </div>
 
-
+  <!-- Reviews -->
   <div class="row charaReview">
     <div class="col-1">
 
     </div>
     <div class="col-3">
-
+      <textarea id="review" name="review" rows=3 cols=50>Write a review!</textarea>
+      <input type="button" value="Submit" onclick="postReview(<?= $value ?>,<?= $id_user ?>)">
     </div>
     <div class="col-4">
       <!-- Anime reviews -->

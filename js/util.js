@@ -72,7 +72,7 @@ function deleteEntry(id_user, mal_id) {
 }
 
 /**
- * Api:animepage
+ * Api:anime
  * @param {*} mal_id id of myanimelist entry in the database
  * @param {*} id_user id of the user in the user table
  */
@@ -85,10 +85,35 @@ function addToList(mal_id, id_user) {
     success: function (response) {
       console.log(response);
       if (response == "success") {
-        $("#btnAddList").html("Already added to list");
+        $("#btnAddList").html("Already added to your anime page");
         $("#btnAddList").attr("disabled", true);
       } else {
         $("#login-error").html(response);
+      }
+    }
+  })
+}
+/**
+ * Api:anime
+ * @param {Integer} mal_id 
+ * @param {Integer} id_user 
+ */
+function postReview(mal_id, id_user) {
+  let review = $("#review").val();
+  console.log(review);
+  $.ajax({
+    url: "api/anime/postReview.php",
+    type: "POST",
+    data: { mal_id: mal_id, id_user: id_user, review: review },
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      if (response == "success") {
+        location.reload();
+        // $("#review").val("");
+        // $("#review-error").html("Review posted!");//TODO: append the review
+      } else {
+        $("#review-error").html(response);
       }
     }
   })
