@@ -111,7 +111,7 @@ function postReview(mal_id, id_user) {
       if (response == "success") {
         location.reload();
         // $("#review").val("");
-        // $("#review-error").html("Review posted!");//TODO: append the review
+        // $("#review-error").html("Review posted!");
       } else {
         $("#review-error").html(response);
       }
