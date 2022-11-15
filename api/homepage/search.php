@@ -1,6 +1,6 @@
 <?php
 //TODO:check if the user is logged in 
-include "utils.php";
+include "../utils.php";
 $db = dbConn();
 $search=$_GET['search'];
 $query = "SELECT MAL_ID as id, Name as name FROM anime_list WHERE LOWER(Name) LIKE '%$search%'";
@@ -16,5 +16,3 @@ if (mysqli_num_rows($result) > 0) {
 }
 mysqli_close($db);
 echo json_encode($json);
-
-?>
