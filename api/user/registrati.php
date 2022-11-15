@@ -1,5 +1,5 @@
 <?php
-include 'utils.php';
+include '../utils.php';
 if(!isset($_POST) || !isset($_POST['username']) || !isset($_POST['password'])){
     echo json_encode("Inserire username e password");
   return;
@@ -23,4 +23,3 @@ if(mysqli_num_rows($result) == 1){//Se la query restituisce una table con UNA so
   $_SESSION['watched']=0;
   echo json_encode("success");
 }
-?>

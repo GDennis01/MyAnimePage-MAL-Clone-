@@ -1,5 +1,5 @@
 <?php
-include 'utils.php';
+include '../utils.php';
 if(!isset($_POST))
   return;
 $user = $_POST['username'];
@@ -19,4 +19,3 @@ if(mysqli_num_rows($result) == 1){//Se la query restituisce una table con UNA so
 }else if(mysqli_num_rows($result)== 0){//Se la query restituisce una table con nessuna riga,vuol dire che non ha trovato la corrispondenza
   echo json_encode("Credenziali errate");
 }
-?>
