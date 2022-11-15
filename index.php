@@ -1,13 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['logged'])){
-    header("Location: login.php");
+    header("Location: login.html");
   return;
 }
-$user = $_SESSION['id'];
+$user = $_SESSION['name'];
 $date = $_SESSION['date'];
 $watched = $_SESSION['watched'];
-$p2w = $_SESSION['p2w'];
 ?>
 <!doctype html>
 <html lang="en">

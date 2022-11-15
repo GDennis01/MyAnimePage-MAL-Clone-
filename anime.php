@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['logged'])){
+if (!isset($_SESSION['logged'])) {
   header("Location: login.php");
   return;
 }
@@ -23,12 +23,13 @@ $conn = dbConn();
     </div>
     <?php
     $value = $_GET['id'];
+    $id_user = $_SESSION['id'];
     //fetch anime with value
     $sql = "SELECT * FROM anime_list WHERE mal_id = $value";
     $result = mysqli_query($conn, $sql);
     $anime = mysqli_fetch_assoc($result);
 
-    $name=$anime['Name'];
+    $name = $anime['Name'];
     $jap_name = $anime['Japanese name'];
     $episode = $anime['Episodes'];
     $studio = $anime['Studios'];
@@ -42,14 +43,14 @@ $conn = dbConn();
       <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Anime image" id="animeImg">
       <div class="animeStats">
         <ul>
-          <li><b>Anime name:</b> <?=$name ?></li>
-          <li><b>Japanese name:</b> <?=$jap_name ?></li>
-          <li><b>Episodes:</b> <?=$episode?></li>
-          <li><b>Studio:</b> <?=$studio?></li>
-          <li><b>First aired:</b> <?=$premiered?></li>
-          <li><b>Type:</b> <?=$type?></li>
-          <li><b>Source:</b> <?=$source?></li>
-          <li><b>Genre:</b> <?=$genre?></li>
+          <li><b>Anime name:</b> <?= $name ?></li>
+          <li><b>Japanese name:</b> <?= $jap_name ?></li>
+          <li><b>Episodes:</b> <?= $episode ?></li>
+          <li><b>Studio:</b> <?= $studio ?></li>
+          <li><b>First aired:</b> <?= $premiered ?></li>
+          <li><b>Type:</b> <?= $type ?></li>
+          <li><b>Source:</b> <?= $source ?></li>
+          <li><b>Genre:</b> <?= $genre ?></li>
         </ul>
       </div>
     </div>
@@ -58,14 +59,14 @@ $conn = dbConn();
     <div id="ctrlSyn" class="col-5">
       <div id="animeCtrl">
         <!-- bootstrap button -->
-        <button type="button" class="btn btn-primary">Add to my list</button>
+        <button type="button" class="btn btn-primary" onclick="addToList(<?= $value ?>,<?= $id_user ?>)">Add to my list</button>
         <button type="button" class="btn btn-primary">Rate</button>
 
       </div>
       <!-- Anime description -->
       <div id="animeSynopsis">
         <p>
-          <?=$syn?>
+          <?= $syn ?>
       </div>
     </div>
 
@@ -77,7 +78,7 @@ $conn = dbConn();
 
     </div>
     <div class="col-3">
-  
+
     </div>
     <div class="col-4">
       <!-- Anime reviews -->
