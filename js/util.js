@@ -1,9 +1,12 @@
+/**
+ * Api:homepage
+ */
 function getAjaxRes() {
   $("#myDropdown").empty();
   let value = event.target.value;
   if (value != "" && value.length > 2) {//value.length >2 is to prevent heavy load on server
     $.ajax({
-      url: "api/search.php",
+      url: "api/homepage/search.php",
       type: "GET",
       data: { search: value },
       dataType: "json",
@@ -23,9 +26,12 @@ function getAjaxRes() {
     })
   }
 }
+/**
+ * Api:homepage
+ */
 function randomAnime() {
   $.ajax({
-    url: "api/random.php",
+    url: "api/homepage/random.php",
     type: "GET",
     dataType: "json",
     success: function (response) {
@@ -42,17 +48,29 @@ function appendSelectedAnime() {
   $("#selected-anime").append(anime);
 }
 
-function logout() {
+
+/**
+ * Api:animepage
+ */
+function deleteEntry(id_user, mal_id) {
   $.ajax({
-    url: "api/user/logout.php",
-    type: "GET",
+    url: "api/animepage/deleteEntry.php",
+    type: "POST",
+    data: { id_user: id_user, mal_id: mal_id },
+    dataType: "json",
     success: function (response) {
-      console.log(response);
-      window.location.href = "index.php";
+      $("#" + mal_id).empty();
+      //delete the entry from the table
+
     }
-  })
+  });
 }
 
+/**
+ * Api:animepage
+ * @param {*} mal_id id of myanimelist entry in the database
+ * @param {*} id_user id of the user in the user table
+ */
 function addToList(mal_id, id_user) {
   $.ajax({
     url: "api/anime/addList.php",
@@ -70,6 +88,9 @@ function addToList(mal_id, id_user) {
     }
   })
 }
+/**
+ * Api:user
+ */
 function checkLogin() {
 
   let username = $("#username").val();
@@ -90,6 +111,9 @@ function checkLogin() {
   })
 }
 
+/**
+ * Api:user
+ */
 function checkRegistrati() {
   let username = $("#username").val();
   let password = $("#pw").val();
@@ -105,6 +129,19 @@ function checkRegistrati() {
       } else {
         $("#login-error").html(response);
       }
+    }
+  })
+}
+/**
+ * Api:user
+ */
+function logout() {
+  $.ajax({
+    url: "api/user/logout.php",
+    type: "GET",
+    success: function (response) {
+      console.log(response);
+      window.location.href = "index.php";
     }
   })
 }

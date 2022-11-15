@@ -34,10 +34,12 @@ $conn = dbConn();
             error_reporting(0);
             // TODO: using ajax to print the table
             // TODO: remove the anime from the list: make a button that sends a post request to the server
-            $sql = "SELECT Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime WHERE anime_user.id_user = '$user'";
+            $sql = "SELECT MAL_ID,Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime WHERE anime_user.id_user = '$user'";
             $result = mysqli_query($conn, $sql);
+            $id_user = $_SESSION['id'];
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
+                $mal_id = $row['MAL_ID'];
                 // echo "<tr>";
                 // echo "<td>" . $row["Name"] . "</td>";
                 // echo "<td>" . $row["Episodes"] . "</td>";
@@ -48,12 +50,12 @@ $conn = dbConn();
                 // // echo "<td>" . $row["image"] . "</td>";
                 // echo "</tr>";
             ?>
-                <tr>
+                <tr id="<?= $mal_id ?>">
                   <td> <?= $row['Name'] ?> </td>
                   <td> <?= $row['Episodes'] ?> </td>
                   <td> <?= $row['Score'] ?> </td>
                   <td> <?= $row['Studios'] ?> </td>
-                  <td><button type='button' class='btn btn-danger'>Delete</button></td>
+                  <td><button type='button' class='btn btn-danger' onclick="deleteEntry(<?= $id_user ?>,<?= $mal_id ?>)">Delete</button></td>
                   <td> <?= $row['image'] ?> </td>
                 </tr>
             <?php
