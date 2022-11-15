@@ -119,6 +119,27 @@ function postReview(mal_id, id_user) {
   })
 }
 /**
+ * Api:anime
+ * @param {Integer} mal_id
+ * @param {Integer} id_user
+ */
+function deleteReview(id_review) {
+  $.ajax({
+    url: "api/anime/deleteReview.php",
+    type: "POST",
+    data: { id_review: id_review },
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      if (response == "success") {
+        location.reload();
+      } else {
+        $("#review-error").html(response);
+      }
+    }
+  })
+}
+/**
  * Api:user
  */
 function checkLogin() {

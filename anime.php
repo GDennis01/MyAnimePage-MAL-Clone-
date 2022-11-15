@@ -11,6 +11,7 @@ $conn = dbConn();
 <html lang="en">
 <?php include 'templates/header.html' ?>
 <link href="css/animepage.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -111,7 +112,7 @@ $conn = dbConn();
           $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = $value";
           $result = mysqli_query($conn, $sql);
           while ($rows = mysqli_fetch_assoc($result)) : ?>
-            <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?> </li>
+            <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li>
           <?php
           endwhile;
           ?>
