@@ -2,10 +2,11 @@
 *:hover {
   outline: 1px solid blue;
 }
+
 /*--- common css ---*/
 body {
   background-color: aquamarine;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 nav.navbar * {
@@ -25,7 +26,7 @@ footer {
 /*--- index.html ---*/
 aside {
   border-radius: 10px;
-  background-image: linear-gradient( #00b09b, #96c93d);
+  background-image: linear-gradient(#00b09b, #96c93d);
   float: right;
   width: 30%;
   height: 50%;
@@ -45,7 +46,10 @@ aside {
   text-align: center;
 }
 
-#logoutIcon{
-  padding-top:0.5em;
+#logoutIcon {
+  padding-top: 0.5em;
 }
 
+textarea {
+  overflow-y: scroll;
+}
