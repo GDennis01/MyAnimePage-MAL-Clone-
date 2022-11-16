@@ -25,6 +25,7 @@ $conn = dbConn();
     <?php
     $value = $_GET['id'];
     $id_user = $_SESSION['id'];
+    $privilege = $_SESSION['privilege'];
 
     // Check if the anime has been already added to the user's list
     $checkIfAdded = "SELECT * FROM anime_user WHERE id_user = $id_user AND id_anime = $value";
@@ -112,10 +113,12 @@ $conn = dbConn();
           $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = $value";
           $result = mysqli_query($conn, $sql);
           while ($rows = mysqli_fetch_assoc($result)) : ?>
-            <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li>
-          <?php
+            <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?>
+
+              <?php if ($privilege == 1) { ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li> <?php } ?>
+        <?php
           endwhile;
-          ?>
+        ?>
         </ul>
       </div>
     </div>

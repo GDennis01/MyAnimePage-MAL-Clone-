@@ -1,7 +1,8 @@
 <?php
 include '../utils.php';
 session_start();
-if (!isset($_SESSION['logged'])) {
+$privilege = $_SESSION['privilege'] ?? 0;
+if (!isset($_SESSION['logged']) || $privilege != 1) {
   header("Location: ../../login.html");
   return;
 }
