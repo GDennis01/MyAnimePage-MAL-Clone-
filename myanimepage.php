@@ -22,10 +22,10 @@ $conn = dbConn();
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Episodes</th>
-              <th scope="col">Score</th>
-              <th scope="col">Studio</th>
+              <th scope="col"><b>Title</b></th>
+              <th scope="col"><b>Episodes</b></th>
+              <th scope="col"><b>Score</b></th>
+              <th scope="col"><b>Studio</b></th>
               <th scope="col"></th>
               <th scope="col"></th>
               <!-- <th scope="col">Image</th> -->
@@ -43,7 +43,10 @@ $conn = dbConn();
                 $mal_id = $row['MAL_ID'];
             ?>
                 <tr id="<?= $mal_id ?>">
-                  <td> <?= $row['Name'] ?> </td>
+
+
+                  <td><b> <?= $row['Name'] ?></b> </td>
+
                   <td> <?= $row['Episodes'] ?> </td>
                   <td> <?= $row['Score'] ?> </td>
                   <td> <?= $row['Studios'] ?> </td>
