@@ -1,6 +1,13 @@
 <?php
 
 include "../utils.php";
+session_start();
+if (!isset($_SESSION['logged'])) {
+  header("Location: ../../login.html");
+  return;
+}
+if (!isset($_POST))
+  return;
 $db = dbConn();
 $search = $_GET['search'];
 $query = "SELECT MAL_ID as id, Name as name FROM anime_list WHERE LOWER(Name) LIKE '%$search%'";

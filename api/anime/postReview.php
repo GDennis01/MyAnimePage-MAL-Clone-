@@ -1,5 +1,11 @@
 <?php
 include '../utils.php';
+
+session_start();
+if (!isset($_SESSION['logged'])) {
+  header("Location: ../../login.html");
+  return;
+}
 if (!isset($_POST))
   return;
 $db = dbConn();
