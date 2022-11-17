@@ -23,8 +23,10 @@ $conn = dbConn();
     $name = "Utente non trovato";
     if (mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_assoc($result);
-      $name = $row['name'] ?? "Utente non trovato";
+      $name = $row['name'];
     }
+    if ($name == "Utente non trovato")
+      header("Location: myanimepage.php");
   }
   ?>
   <!-- Printing a table with all anime -->
