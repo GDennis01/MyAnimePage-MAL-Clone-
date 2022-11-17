@@ -39,7 +39,12 @@
       <!-- Search bar per gli anime -->
       <form class="d-flex" role="search" method="POST" action="anime.php">
         <div class="dropdown">
-          <input type="search" oninput="getAjaxRes()" onclick="openSsearchDropdown()" id="search_input" />
+          <select id="search_option">
+            <option value="Anime" selected>Anime</option>
+            <option value="User">User</option>
+          </select>
+          <input type="search" placeholder="Anime or user page!" oninput="getAjaxRes()" onclick="openSearchDropdown()"
+            id="search_input" />
           <div id="myDropdown" class="dropdown-content show">
           </div>
         </div>

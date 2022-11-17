@@ -4,28 +4,48 @@
 function getAjaxRes() {
   $("#myDropdown").empty();
   let value = event.target.value;
+  let option = $("#search_option").val();
+  console.log(option);
   if (value != "" && value.length > 2) {//value.length >2 is to prevent heavy load on server
-    $.ajax({
-      url: "api/homepage/search.php",
-      type: "GET",
-      data: { search: value },
-      dataType: "json",
-      success: function (response) {
-        //console.log(response);
-        $("#myDropdown").empty();
-        let anime = "";
-        console.log(response);
-        for (let i = 0; i < response.length; i++) {
-          anime = '<a href="anime.php?id=' + response[i].id + '" class="show"><option class="anime" id="' + response[i].id + '">' + response[i].name + '</option></a>';
-          // console.log(anime);
-          console.log(anime);
-          $("#myDropdown").append(anime);
-        }
-        console.log("------------------------");
-      }
-    })
+    switch (option) {
+      default:
+      case "Anime":
+        $.ajax({
+          url: "api/homepage/search_anime.php",
+          type: "GET",
+          data: { search: value },
+          dataType: "json",
+          success: function (response) {
+            $("#myDropdown").empty();
+            let anime = "";
+            for (let i = 0; i < response.length; i++) {
+              anime = '<a href="anime.php?id=' + response[i].id + '" class="show"><option class="anime" id="' + response[i].id + '">' + response[i].name + '</option></a>';
+              $("#myDropdown").append(anime);
+            }
+          }
+        })
+        break;
+
+      case "User":
+        $.ajax({
+          url: "api/homepage/search_user.php",
+          type: "GET",
+          data: { search: value },
+          dataType: "json",
+          success: function (response) {
+            $("#myDropdown").empty();
+            let anime = "";
+            for (let i = 0; i < response.length; i++) {
+              anime = '<a href="myanimepage.php?id=' + response[i].id + '" class="show"><option class="anime" id="' + response[i].id + '">' + response[i].name + '</option></a>';
+              $("#myDropdown").append(anime);
+            }
+          }
+        })
+        break;
+    }
   }
 }
+
 /**
  * Api:homepage
  */
