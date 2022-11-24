@@ -1,9 +1,9 @@
-
-
+<!-- W3C validated -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,28 +15,30 @@
 <body id="body">
   <div class="container login-container">
     <div class="col-md-6 login-form-2">
-      <form>
-        <h3>Login</h3>
-        <div class="form-group">
-          <input type="text" class="form-control" id="username" name="username" placeholder="Your username *" value="" />
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" id="pw" name="pw" placeholder="Your Password *" value="" />
-        </div>
-        <div class="form-group">
-          <input id="btnLogin" type="button" class="btnSubmit" value="Login" onclick="checkLogin()" />
-        </div>
-        <div class="form-group">
-          <a href="registrati.html"><input type="button" class="btnSubmit" value="Registrati" /></a>
-        </div>
-        <div class="form-group">
-        </div>
-      </form>
+      <!-- <form> -->
+      <h3>Login</h3>
+      <div class="form-group">
+        <input type="text" class="form-control" id="username" name="username" placeholder="Your username *" value="">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="pw" name="pw" placeholder="Your Password *" value="">
+      </div>
+      <div class="form-group">
+        <input id="btnLogin" type="button" class="btnSubmit" value="Login" onclick="checkLogin()">
+      </div>
+      <div class="form-group">
+        <!-- <a href="registrati.html"> -->
+        <form style="display: inline" action="registrati.html" method="get">
+          <input type="button" class="btnSubmit" value="Registrati">
+        </form>
+        <!-- </a> -->
+      </div>
+      <div class="form-group">
+      </div>
+      <!-- </form> -->
     </div>
     <div id="login-error"></div>
   </div>
-
-
 </body>
 
 </html>

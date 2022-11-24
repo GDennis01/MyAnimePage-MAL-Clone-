@@ -1,4 +1,6 @@
+/* W3C Css validated! */
 /* Debug css rule */
+
 *:hover {
   outline: 1px solid blue;
 }
@@ -37,7 +39,7 @@ aside {
   margin-left: 10%;
   margin-top: 1%;
   width: 30%;
-  height: 10%;
+  height: 30%;
   /* outline: 1px solid black; */
 }
 

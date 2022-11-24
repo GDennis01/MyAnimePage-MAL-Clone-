@@ -1,34 +1,38 @@
-.login-container{
+/* W3C Css validated! */
+.login-container {
   margin-top: 8%;
   margin-left: 27%;
 }
 
-.login-form-2{
+.login-form-2 {
   padding: 9%;
   background: #008080;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-.login-form-2 h3{
+
+.login-form-2 h3 {
   text-align: center;
-  margin-bottom:12%;
+  margin-bottom: 12%;
   color: #fff;
 }
-.btnSubmit{
-position:relative;
+
+.btnSubmit {
+  position: relative;
   font-weight: 600;
   width: 50%;
   color: #282726;
   background-color: #fff;
   border: none;
   border-radius: 1.5rem;
-  padding:2%;
-left:30%;
+  padding: 2%;
+  left: 30%;
 }
 
-#body{
+#body {
   background-color: #82b4b4;
 }
-#signUp{
-position:relative;
-  
+
+#signUp {
+  position: relative;
+
 }

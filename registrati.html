@@ -1,46 +1,52 @@
+<!-- W3C Validated! -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-    <head>
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/util.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/util.js"></script>
 
-        <link href="css/registrati.css" rel="stylesheet" type="text/css">
-        <title>Registrati</title>
-    </head> 
-
-
-    <body id="body" >
-        <div class="container login-container">
-            <div class="col-md-6 login-form-2">
-                <form >
-                    <h3>Registrati</h3>
-                    <div class="form-group">
-                        <input type="text"  id="username" class="form-control" name="username" placeholder="Your username *" value="" />
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" name="pw" id="pw" class="form-control"  placeholder="Your Password *" value="" />
-                    </div>
-                    <div class="form-group"> 
-
-                      <input id="btnReg" type="button" class="btnSubmit" value="Registrati" onclick="checkRegistrati()" />
-                    </div>
-                    <div class="form-group">
-                        <a href="login.html"><input type="button" class="btnSubmit" value="Login" /></a>
-                    </div>
-                    <div class="form-group">
-                    </div>
-                </form>
-            </div>
-            <div id="login-error"></div>
-
-        </div>
-
-       
+  <link href="css/registrati.css" rel="stylesheet" type="text/css">
+  <title>Registrati</title>
+</head>
 
 
-    </body>
+<body id="body">
+  <div class="container login-container">
+    <div class="col-md-6 login-form-2">
+      <!-- <form> -->
+      <h3>Registrati</h3>
+      <div class="form-group">
+        <input type="text" id="username" class="form-control" name="username" placeholder="Your username *" value="">
+      </div>
+
+      <div class="form-group">
+        <input type="password" name="pw" id="pw" class="form-control" placeholder="Your Password *" value="">
+      </div>
+      <div class="form-group">
+
+        <input id="btnReg" type="button" class="btnSubmit" value="Registrati" onclick="checkRegistrati()">
+      </div>
+      <div class="form-group">
+        <!-- <a href="login.html"> -->
+        <form style="display: inline" action="login.html" method="get">
+          <input type="button" class="btnSubmit" value="Login">
+        </form>
+      </div>
+      <div class="form-group">
+      </div>
+      <!-- </form> -->
+    </div>
+    <div id="login-error"></div>
+
+  </div>
+
+
+
+
+</body>
+
 </html>

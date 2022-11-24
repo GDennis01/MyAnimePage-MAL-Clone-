@@ -1,3 +1,4 @@
+<!-- W3C validated! -->
 <?php
 session_start();
 if (!isset($_SESSION['logged'])) {
@@ -68,7 +69,7 @@ $conn = dbConn();
                 $mal_id = $row['MAL_ID'];
             ?>
                 <tr id="<?= $mal_id ?>">
-                  <td><b><a href="anime.php?id= <?= $mal_id ?>"> <?= $row['Name'] ?></a></b> </td>
+                  <td><b><a href="anime.php?id=<?= $mal_id ?>"> <?= $row['Name'] ?></a></b> </td>
                   <td> <?= $row['Episodes'] ?> </td>
                   <td> <?= $row['Score'] ?> </td>
                   <td> <?= $row['Studios'] ?> </td>
@@ -90,7 +91,8 @@ $conn = dbConn();
         </table>
       </div>
     </div>
-    <?php include 'templates/footer.html' ?>
+  </div>
+  <?php include 'templates/footer.html' ?>
 </body>
 
 </html>
