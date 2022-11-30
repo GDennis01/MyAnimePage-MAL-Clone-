@@ -1,3 +1,6 @@
+function redirectLogin() { window.location.href = 'login.html'; }
+function redirectRegistrati() { window.location.href = 'registrati.html'; }
+
 async function sendApiRequest(mal_id, number_div = -1) {
   // Here we define our query as a multi-line string
   // Storing it in a separate .graphql/.gql file is also possible
@@ -261,6 +264,16 @@ function checkLogin() {
 function checkRegistrati() {
   let username = $("#username").val();
   let password = $("#pw").val();
+
+  //check if username respects the regex [A-Za-z][A-Za-z0-9]{5,15}
+  let regex = /^[A-Za-z][A-Za-z0-9]{5,15}$/;
+  if (!regex.test(username)) {
+    $("#login-error").html("Username must be between 6 and 16 characters and can only contain letters and numbers and must start with a letter");
+    return;
+  } else {
+    $("#login-error").html("Success");
+    return;
+  }
   $.ajax({
     url: "api/user/registrati.php",
     type: "POST",
