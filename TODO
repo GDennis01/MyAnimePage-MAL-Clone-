@@ -2,6 +2,7 @@ TODO: script in python per scrapeare immagini di anime
 TODO: usare $_SERVER['root'] per gli include
 TODO: admin può aggiungere un anime?
 TODO: capitolo 07 usabilità
+TODO: capitolo 13 sicurezza dei dati
 TODO: sicurezza
 TODO: sql injection
 TODO: gestire tutti gli errori
