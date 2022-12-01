@@ -271,8 +271,7 @@ function checkRegistrati() {
     $("#login-error").html("Username must be between 6 and 16 characters and can only contain letters and numbers and must start with a letter");
     return;
   } else {
-    $("#login-error").html("Success");
-    return;
+    // $("#login-error").html("Success");
   }
   $.ajax({
     url: "api/user/registrati.php",
@@ -297,7 +296,7 @@ function logout() {
     url: "api/user/logout.php",
     type: "GET",
     success: function (response) {
-      console.log(response);
+      // console.log(response);
       window.location.href = "index.php";
     }
   })

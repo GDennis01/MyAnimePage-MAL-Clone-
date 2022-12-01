@@ -8,19 +8,34 @@ $user = $_POST['username'];
 $pass = $_POST['password'];
 $conn = dbConn();
 
-$sql = "SELECT name FROM user WHERE name = '$user'";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) == 1) { //Se la query restituisce una table con UNA sola riga,vuol dire che ha trovato la corrispondenza
+$sql = "SELECT name 
+        FROM user 
+        WHERE name = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$user]);
+
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$num_rows = $stmt->rowCount();
+if ($num_rows == 1) { //Se la query restituisce una table con UNA sola riga,vuol dire che ha trovato la corrispondenza
   echo json_encode("Username already taken");
-} else if (mysqli_num_rows($result) == 0) { //Se la query restituisce una table con nessuna riga,vuol dire che non ha trovato la corrispondenza
+} else if ($num_rows == 0) { //Se la query restituisce una table con nessuna riga,vuol dire che non ha trovato la corrispondenza
   $date = date("Y-m-d");
-  $sql = "INSERT INTO user(name,password,data_creazione) values ('$user','$pass','$date');";
-  $conn->query($sql);
+
+  $sql = "INSERT INTO user(name,password,data_creazione) 
+                      values (?,?,?);";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$user, $pass, $date]);
+
+
   session_start();
   $_SESSION['name'] = $user;
   $_SESSION['logged'] = true;
   $_SESSION['date'] = $date;
   $_SESSION['watched'] = 0;
   $_SESSION['privilege'] = 0;
+
   echo json_encode("success");
+} else {
+  echo json_encode("Errore nel server");
 }
