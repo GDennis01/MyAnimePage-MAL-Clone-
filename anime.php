@@ -7,6 +7,19 @@ if (!isset($_SESSION['logged'])) {
 }
 include 'api/utils.php';
 $conn = dbConn();
+
+$value = $_GET['id'];
+$id_user = $_SESSION['id'];
+$privilege = $_SESSION['privilege'];
+
+$sql = "SELECT * FROM anime_list WHERE mal_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$value]);
+
+// If the anime is not in the database, redirect to the index page
+if ($stmt->rowCount() == 0) {
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,24 +37,24 @@ $conn = dbConn();
 
     </div>
     <?php
-    $value = $_GET['id'];
-    $id_user = $_SESSION['id'];
-    $privilege = $_SESSION['privilege'];
+
 
     // Check if the anime has been already added to the user's list
-    $checkIfAdded = "SELECT * FROM anime_user WHERE id_user = $id_user AND id_anime = $value";
-    $result = mysqli_query($conn, $checkIfAdded);
-    if (mysqli_num_rows($result) > 0) {
+    $checkIfAdded = "SELECT * FROM anime_user WHERE id_user = ? AND id_anime = ?";
+
+    $stmt2 = $conn->prepare($checkIfAdded);
+    $stmt2->execute([$id_user, $value]);
+
+    if ($stmt2->rowCount() > 0) {
       $added = true;
       $text = "Already added to your anime page";
     } else {
       $added = false;
       $text = "Add to list";
     }
-    //fetch anime with value
-    $sql = "SELECT * FROM anime_list WHERE mal_id = $value";
-    $result = mysqli_query($conn, $sql);
-    $anime = mysqli_fetch_assoc($result);
+    //fetch anime with value with the first prepared query
+    $anime = $stmt->fetch(PDO::FETCH_ASSOC);
+
     $id_user = $_SESSION['id'];
 
     $name = $anime['Name'];
@@ -111,9 +124,12 @@ $conn = dbConn();
         <ul>
           <!-- print all reviews -->
           <?php
-          $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = $value";
-          $result = mysqli_query($conn, $sql);
-          while ($rows = mysqli_fetch_assoc($result)) : ?>
+          unset($stmt);
+          $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = ?";
+          $stmt = $conn->prepare($sql);
+          $stmt->execute([$value]);
+
+          while ($rows = $stmt->fetch(PDO::FETCH_ASSOC)) :   ?>
             <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?>
 
               <?php if ($privilege == 1) { ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li> <?php } ?>
