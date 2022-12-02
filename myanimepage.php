@@ -19,15 +19,17 @@ $conn = dbConn();
   <?php include 'templates/navbar.html' ?>
   <?php
   if ($search != $user) {
-    $sql = "SELECT name from user where id_user = $search";
-    $result = mysqli_query($conn, $sql);
-    $name = "Utente non trovato";
-    if (mysqli_num_rows($result) > 0) {
-      $row = mysqli_fetch_assoc($result);
-      $name = $row['name'];
-    }
+    $sql = "SELECT name from user where id_user = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$search]);
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $name = $result['name'] ?? "Utente non trovato";
+
     if ($name == "Utente non trovato")
       header("Location: myanimepage.php");
+
+    unset($stmt);
   }
   ?>
   <!-- Printing a table with all anime -->
@@ -57,15 +59,23 @@ $conn = dbConn();
             // error_reporting(0);
             // TODO: using ajax to print the table
             $sql = "SELECT MAL_ID,Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime ";
-            if ($editable) {
-              $sql .= "WHERE anime_user.id_user = $user";
-            } else {
-              $sql .= "WHERE anime_user.id_user = $search";
-            }
-            $result = mysqli_query($conn, $sql);
+            // if ($editable) {
+            //   // $sql .= "WHERE anime_user.id_user = $user";
+            //   $sql .= "WHERE anime_user.id_user = ?";
+            // } else {
+            //   $sql .= "WHERE anime_user.id_user = ?";
+            // }
+            $sql .= "WHERE anime_user.id_user = ?";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$search]);
+
+
             $id_user = $_SESSION['id'];
-            if (mysqli_num_rows($result) > 0) {
-              while ($row = mysqli_fetch_assoc($result)) :
+            // if (mysqli_num_rows($result) > 0) {
+            // while ($row = mysqli_fetch_assoc($result)) :
+            if ($stmt->rowCount() > 0) {
+              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
                 $mal_id = $row['MAL_ID'];
             ?>
                 <tr id="<?= $mal_id ?>">
@@ -85,7 +95,7 @@ $conn = dbConn();
             <?php
               endwhile;
             }
-            mysqli_close($conn);
+            // mysqli_close($conn);
             ?>
           </tbody>
         </table>
