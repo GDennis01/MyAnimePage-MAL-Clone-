@@ -2,80 +2,100 @@
 JS File with common functions available through all the pages
 Mainly navbar related js functions
 */
+/*
+Attach an event listener whenever the carousel animation ends
+This is useful so that we can change the synopsis text
+*/
+$(document).ready(function () {
+  //right after the animation starts
+  // $('#carouselExampleControls').on('slide.bs.carousel', function () {
+  //   //alert("Slide Event");
+  //   console.log('slid event');
+  // });
 
-async function sendApiRequest(mal_id, number_div = -1) {
-  // Here we define our query as a multi-line string
-  // Storing it in a separate .graphql/.gql file is also possible
-  var query = `
-query ($id: Int) { # Define which variables will be used in the query (id)
-  Media (id: $id, type: ANIME) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
-    id
-    title {
-      romaji
-      english
-      native
+  $('#carouselExampleControls').on('slid.bs.carousel', function (event) {
+    for (let i = 0; i < 3; i++) {
+      if (event.to == i) {
+        $("#syn" + i).show();
+      } else
+        $("#syn" + i).hide();
     }
-    coverImage{
-      large
-    }
-  }
-}
-`;
-
-  // Define our query variables and values that will be used in the query request
-  var variables = {
-    id: mal_id
-    // id: 1
-  };
-
-  // Define the config we'll need for our Api request
-  var url = 'https://graphql.anilist.co',
-    options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query: query,
-        variables: variables
-      })
-    };
-
-
-  // Make the HTTP Api request
-  let _handleData = await fetch(url, options).then(handleResponse)
-    .then(
-      (data) => {
-        // console.log(data);
-        return data;
-      }
-    )
-    .catch(handleError);
-  console.log(_handleData);
-  if (number_div != -1) {
-    $("#slider_" + number_div).attr("src", _handleData.data.Media.coverImage.large);
-    $("#slider_a_" + number_div).attr("href", "anime.php?id=" + _handleData.data.Media.id);
-  }
-  return _handleData;
-
-}
-
-function handleResponse(response) {
-  return response.json().then(function (json) {
-    return response.ok ? json : Promise.reject(json);
   });
-}
+});
 
-function handleData(data) {
-  _handleData = data;
-  // console.log(data);
-}
+// async function sendApiRequest(mal_id, number_div = -1) {
+//   // Here we define our query as a multi-line string
+//   // Storing it in a separate .graphql/.gql file is also possible
+//   var query = `
+// query ($id: Int) { # Define which variables will be used in the query (id)
+//   Media (id: $id, type: ANIME) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+//     id
+//     title {
+//       romaji
+//       english
+//       native
+//     }
+//     coverImage{
+//       large
+//     }
+//   }
+// }
+// `;
 
-function handleError(error) {
-  // alert('Error, check console');
-  // console.error(error);
-}
+//   // Define our query variables and values that will be used in the query request
+//   var variables = {
+//     id: mal_id
+//     // id: 1
+//   };
+
+//   // Define the config we'll need for our Api request
+//   var url = 'https://graphql.anilist.co',
+//     options = {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         query: query,
+//         variables: variables
+//       })
+//     };
+
+
+//   // Make the HTTP Api request
+//   let _handleData = await fetch(url, options).then(handleResponse)
+//     .then(
+//       (data) => {
+//         // console.log(data);
+//         return data;
+//       }
+//     )
+//     .catch(handleError);
+//   console.log(_handleData);
+//   if (number_div != -1) {
+//     $("#slider_" + number_div).attr("src", _handleData.data.Media.coverImage.large);
+//     $("#slider_a_" + number_div).attr("href", "anime.php?id=" + _handleData.data.Media.id);
+//   }
+//   return _handleData;
+
+// }
+
+// function handleResponse(response) {
+//   return response.json().then(function (json) {
+//     return response.ok ? json : Promise.reject(json);
+//   });
+// }
+
+// function handleData(data) {
+//   _handleData = data;
+//   // console.log(data);
+// }
+
+// function handleError(error) {
+//   // alert('Error, check console');
+//   // console.error(error);
+// }
 /**
  * Api:homepage
  */
@@ -124,9 +144,6 @@ function getAjaxRes() {
   }
 }
 
-/**
- * Api:homepage
- */
 function randomAnime() {
   $.ajax({
     url: "api/homepage/random.php",

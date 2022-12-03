@@ -53,6 +53,14 @@ aside {
   text-align: center;
 }
 
+.synopsis {
+  display: none;
+}
+
+#syn0 {
+  display: block;
+}
+
 #logoutIcon {
   padding-top: 0.5em;
 }
