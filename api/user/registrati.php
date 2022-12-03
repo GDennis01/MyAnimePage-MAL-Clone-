@@ -29,6 +29,7 @@ if ($num_rows == 1) { //Se la query restituisce una table con UNA sola riga,vuol
 
 
   session_start();
+  //TODO fixare le sessioni quando ci si registra
   $_SESSION['name'] = $user;
   $_SESSION['logged'] = true;
   $_SESSION['date'] = $date;
