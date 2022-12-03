@@ -1,9 +1,9 @@
 /* W3C Css validated! */
 /* Debug css rule */
-
+/* 
 *:hover {
   outline: 1px solid blue;
-}
+} */
 
 /*--- common css ---*/
 body {
@@ -12,9 +12,14 @@ body {
 }
 
 nav.navbar * {
-  background-color: yellowgreen;
+  background-color: rgb(154, 205, 50);
   margin-left: 0.5em;
   margin-right: 0.5em;
+}
+
+nav .nav-link:hover,
+.navbar-brand:hover {
+  background-color: rgb(99, 134, 30);
 }
 
 footer {
