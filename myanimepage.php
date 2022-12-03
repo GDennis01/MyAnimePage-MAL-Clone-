@@ -97,6 +97,7 @@ $conn = dbConn();
               endwhile;
             }
             // mysqli_close($conn);
+            unset($db);
             ?>
           </tbody>
         </table>

@@ -136,6 +136,7 @@ if ($stmt->rowCount() == 0) {
               <?php if ($privilege == 1) { ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li> <?php } ?>
         <?php
           endwhile;
+          unset($db);
         ?>
         </ul>
       </div>
