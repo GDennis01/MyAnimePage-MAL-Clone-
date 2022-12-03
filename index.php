@@ -5,8 +5,10 @@ if (!isset($_SESSION['logged'])) {
   header("Location: login.html");
   return;
 }
+include 'api/utils.php';
 $user = $_SESSION['name'];
 $date = $_SESSION['date'];
+$id_user = $_SESSION['id'];
 $watched = $_SESSION['watched'];
 ?>
 <!doctype html>
@@ -94,11 +96,20 @@ $watched = $_SESSION['watched'];
   </div>
   <!-- Aside -->
   <aside>
+    <?php
+    $conn = dbConn();
+    $sql = "SELECT count(*) FROM anime_user where id_user = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id_user]);
+    $count = $stmt->fetchColumn();
+    unset($stmt);
+    unset($conn);
+    ?>
     <!-- Stats of the user -->
     <ul>
       <li>Nome account: <?= $user ?></li>
       <li>Data creazione account: <?= $date ?></li>
-      <li>Anime visti: <?= $watched ?></li>
+      <li>Anime visti: <?= $count ?></li>
     </ul>
 
   </aside>
