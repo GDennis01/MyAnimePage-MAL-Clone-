@@ -67,10 +67,12 @@ if ($stmt->rowCount() == 0) {
     $source = $anime['Source'];
     $genre = $anime['Genres'];
     $syn = $anime['synopsis'];
+    $image = $anime['image'];
     ?>
     <!-- Anime info -->
     <div id="animeInfo" class="col-3">
-      <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Anime image" id="animeImg">
+      <!-- <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Anime image" id="animeImg"> -->
+      <img src='<?= $image ?>' alt="Anime image" id="animeImg">
       <div class="animeStats">
         <ul>
           <li><b>Anime name:</b> <?= $name ?></li>
