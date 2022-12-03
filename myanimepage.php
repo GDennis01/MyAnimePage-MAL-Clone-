@@ -59,7 +59,6 @@ $conn = dbConn();
           <tbody>
             <?php
             // error_reporting(0);
-            // TODO: using ajax to print the table
             $sql = "SELECT MAL_ID,Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime ";
             // if ($editable) {
             //   // $sql .= "WHERE anime_user.id_user = $user";
