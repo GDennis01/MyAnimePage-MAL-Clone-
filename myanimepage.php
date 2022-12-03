@@ -59,7 +59,8 @@ $conn = dbConn();
           <tbody>
             <?php
             // error_reporting(0);
-            $sql = "SELECT MAL_ID,Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime ";
+            // $sql = "SELECT MAL_ID,Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime ";
+            $sql = "SELECT * FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime ";
             // if ($editable) {
             //   // $sql .= "WHERE anime_user.id_user = $user";
             //   $sql .= "WHERE anime_user.id_user = ?";
@@ -84,14 +85,14 @@ $conn = dbConn();
                   <td> <?= $row['Episodes'] ?> </td>
                   <td> <?= $row['Score'] ?> </td>
                   <td> <?= $row['Studios'] ?> </td>
+                  <td> <img src='<?= ($row['thumbnail']) ?> ' height="50px" width="50px"> </td>
                   <!-- Buttons to edit(only if you are visiting your own page) -->
                   <?php if ($editable) : ?>
                     <td><button type='button' class='btn btn-danger' onclick="deleteEntry(<?= $id_user ?>,<?= $mal_id ?>)">Delete</button></td>
                     <!-- <td><button type='button' class='btn btn-info' onclick="goesToAnimePage(<?php //$mal_id;
                                                                                                   ?>)">Visit Anime Page</button></td> -->
                   <?php endif; ?>
-                  <!-- <td> <?php #$row['image'] ?? ""
-                            ?> </td> -->
+
                 </tr>
             <?php
               endwhile;
