@@ -14,6 +14,8 @@ $conn = dbConn();
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'templates/header.html' ?>
+<script src="js/animepage.js"></script>
+</head>
 
 <body>
   <?php include 'templates/navbar.html' ?>
