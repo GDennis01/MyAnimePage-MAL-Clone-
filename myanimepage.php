@@ -22,14 +22,18 @@ $conn = dbConn() or die("Connection failed");
   <?php
   if ($search != $user) {
     $sql = "SELECT name from user where id_user = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$search]);
+    try {
+      $stmt = $conn->prepare($sql);
+      $stmt->execute([$search]);
+    } catch (PDOException $e) {
+      header("Location: myanimepage.php"); //going to my own myanimepage
+    }
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $name = $result['name'] ?? "Utente non trovato";
 
     if ($name == "Utente non trovato")
-      header("Location: myanimepage.php");
+      header("Location: myanimepage.php"); //going to my own myanimepage
 
     unset($stmt);
   }
@@ -68,38 +72,47 @@ $conn = dbConn() or die("Connection failed");
             //   $sql .= "WHERE anime_user.id_user = ?";
             // }
             $sql .= "WHERE anime_user.id_user = ?";
-
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([$search]);
+            $error = false;
+            try {
+              $stmt = $conn->prepare($sql);
+              $stmt->execute([$search]);
+            } catch (PDOException $e) {
+              $error = true;
+            }
 
 
             $id_user = $_SESSION['id'];
             // if (mysqli_num_rows($result) > 0) {
             // while ($row = mysqli_fetch_assoc($result)) :
-            if ($stmt->rowCount() > 0) {
-              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
-                $mal_id = $row['MAL_ID'];
+            if ($error === false) {
+              if ($stmt->rowCount() > 0) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
+                  $mal_id = $row['MAL_ID'];
             ?>
-                <tr id="<?= $mal_id ?>">
-                  <td><b><a href="anime.php?id=<?= $mal_id ?>"> <?= $row['Name'] ?></a></b> </td>
-                  <td> <?= $row['Episodes'] ?> </td>
-                  <td> <?= $row['Score'] ?> </td>
-                  <td> <?= $row['Studios'] ?> </td>
-                  <td> <img src='<?= ($row['thumbnail']) ?> ' height="50px" width="50px"> </td>
-                  <!-- Buttons to edit(only if you are visiting your own page) -->
-                  <?php if ($editable) : ?>
-                    <td><button type='button' class='btn btn-danger' onclick="deleteEntry(<?= $id_user ?>,<?= $mal_id ?>)">Delete</button></td>
-                    <!-- <td><button type='button' class='btn btn-info' onclick="goesToAnimePage(<?php //$mal_id;
-                                                                                                  ?>)">Visit Anime Page</button></td> -->
-                  <?php endif; ?>
+                  <tr id="<?= $mal_id ?>">
+                    <td><b><a href="anime.php?id=<?= $mal_id ?>"> <?= $row['Name'] ?></a></b> </td>
+                    <td> <?= $row['Episodes'] ?> </td>
+                    <td> <?= $row['Score'] ?> </td>
+                    <td> <?= $row['Studios'] ?> </td>
+                    <td> <img src='<?= ($row['thumbnail']) ?> ' height="50px" width="50px"> </td>
+                    <!-- Buttons to edit(only if you are visiting your own page) -->
+                    <?php if ($editable) : ?>
+                      <td><button type='button' class='btn btn-danger' onclick="deleteEntry(<?= $id_user ?>,<?= $mal_id ?>)">Delete</button></td>
+                      <!-- <td><button type='button' class='btn btn-info' onclick="goesToAnimePage(<?php //$mal_id;
+                                                                                                    ?>)">Visit Anime Page</button></td> -->
+                    <?php endif; ?>
 
-                </tr>
+                  </tr>
+              <?php
+                endwhile;
+              }
+              unset($db);
+            } else { ?>
+              <tr>
+                <td colspan='5'>No anime found</td>
+              </tr>
             <?php
-              endwhile;
-            }
-            // mysqli_close($conn);
-            unset($db);
-            ?>
+            } ?>
           </tbody>
         </table>
       </div>

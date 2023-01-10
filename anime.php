@@ -13,8 +13,12 @@ $id_user = $_SESSION['id'];
 $privilege = $_SESSION['privilege'];
 
 $sql = "SELECT * FROM anime_list WHERE mal_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->execute([$value]);
+try {
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$value]);
+} catch (PDOException $e) {
+  header("Location: index.php");
+}
 
 // If the anime is not in the database, redirect to the index page
 if ($stmt->rowCount() == 0) {
@@ -43,8 +47,12 @@ if ($stmt->rowCount() == 0) {
     // Check if the anime has been already added to the user's list
     $checkIfAdded = "SELECT * FROM anime_user WHERE id_user = ? AND id_anime = ?";
 
-    $stmt2 = $conn->prepare($checkIfAdded);
-    $stmt2->execute([$id_user, $value]);
+    try {
+      $stmt2 = $conn->prepare($checkIfAdded);
+      $stmt2->execute([$id_user, $value]);
+    } catch (PDOException $e) {
+      header("Location: index.php");
+    }
 
     if ($stmt2->rowCount() > 0) {
       $added = true;
@@ -128,17 +136,23 @@ if ($stmt->rowCount() == 0) {
           <!-- print all reviews -->
           <?php
           unset($stmt);
+          $error = false;
           $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = ?";
-          $stmt = $conn->prepare($sql);
-          $stmt->execute([$value]);
+          try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$value]);
+          } catch (PDOException $e) {
+            $error = true;
+          }
+          if ($error === false) :
+            while ($rows = $stmt->fetch(PDO::FETCH_ASSOC)) :   ?>
+              <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?>
 
-          while ($rows = $stmt->fetch(PDO::FETCH_ASSOC)) :   ?>
-            <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?>
-
-              <?php if ($privilege == 1) { ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li> <?php } ?>
+                <?php if ($privilege == 1) { ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li> <?php } ?>
         <?php
-          endwhile;
-          unset($db);
+            endwhile;
+            unset($db);
+          endif;
         ?>
         </ul>
       </div>
