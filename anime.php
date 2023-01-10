@@ -107,7 +107,7 @@ if ($stmt->rowCount() == 0) {
 
           <?= $text ?>
         </button>
-        <button type="button" class="btn btn-primary">Rate</button>
+
 
       </div>
       <!-- Anime description -->
