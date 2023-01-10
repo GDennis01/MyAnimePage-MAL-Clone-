@@ -16,8 +16,6 @@ function addToList(mal_id, id_user) {
       if (response == "success") {
         $("#btnAddList").html("Already added to your anime page");
         $("#btnAddList").attr("disabled", true);
-      } else {
-        $("#login-error").html(response);
       }
     }
   })

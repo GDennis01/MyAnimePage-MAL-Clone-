@@ -142,6 +142,9 @@ if ($stmt->rowCount() == 0) {
         ?>
         </ul>
       </div>
+      <div id="review-error">
+
+      </div>
     </div>
   </div>
 
