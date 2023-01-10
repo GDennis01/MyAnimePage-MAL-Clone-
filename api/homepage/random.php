@@ -14,7 +14,8 @@ try {
   $stmt->execute();
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  echo $e->getMessage();
+  echo "-1";
+  return;
 }
 // $result = mysqli_query($db, $query);
 // $row = mysqli_fetch_assoc($result);

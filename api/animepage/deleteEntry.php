@@ -16,8 +16,12 @@ $anime = $_POST['mal_id'];
 // $sql = "DELETE FROM anime_user WHERE id_user = $user AND id_anime = $anime";
 // $success = mysqli_query($db, $sql);
 $sql = "DELETE FROM anime_user WHERE id_user = ? AND id_anime = ?";
-$stmt = $db->prepare($sql);
-$success = $stmt->execute([$user, $anime]);
+try {
+  $stmt = $db->prepare($sql);
+  $success = $stmt->execute([$user, $anime]);
+} catch (PDOException $e) {
+  $success = false;
+}
 
 
 // $success = mysqli_query($db, $sql);

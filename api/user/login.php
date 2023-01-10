@@ -10,12 +10,17 @@ $conn = dbConn() or die("Connection failed");
 $sql = "SELECT id_user,name,data_creazione as date,anime_visti as watched,privilege  
         FROM user 
         WHERE name = ? AND password = ?";
-$stmt = $conn->prepare($sql);
-$stmt->execute([$user, $pass]);
+try {
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$user, $pass]);
 
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$num_rows = $stmt->rowCount();
+  $num_rows = $stmt->rowCount();
+} catch (PDOException $e) {
+  echo json_encode("Errore nel server");
+  return;
+}
 if ($num_rows == 1) { //Se la query restituisce una table con UNA sola riga,vuol dire che ha trovato la corrispondenza
   session_start();
   $_SESSION['logged'] = true;

@@ -11,10 +11,15 @@ $conn = dbConn() or die("Connection failed");
 $sql = "SELECT name 
         FROM user 
         WHERE name = ?";
-$stmt = $conn->prepare($sql);
-$stmt->execute([$user]);
+try {
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$user]);
 
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  echo json_encode("Errore nel server");
+  return;
+}
 
 $num_rows = $stmt->rowCount();
 if ($num_rows == 1) { //Se la query restituisce una table con UNA sola riga,vuol dire che ha trovato la corrispondenza
@@ -24,19 +29,25 @@ if ($num_rows == 1) { //Se la query restituisce una table con UNA sola riga,vuol
 
   $sql = "INSERT INTO user(name,password,data_creazione) 
                       values (?,?,?);";
-  $stmt = $conn->prepare($sql);
-  $stmt->execute([$user, $pass, $date]);
-
+  try {
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$user, $pass, $date]);
+  } catch (PDOException $e) {
+    echo json_encode("Errore nel server");
+    return;
+  }
 
   session_start();
-  $sql = "SELECT id_user from user where name = ?";
-  $stmt = $conn->prepare($sql);
-  $stmt->execute([$user]);
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  $id = $conn->lastInsertId();
+  // $sql = "SELECT id_user from user where name = ?";
+  // $stmt = $conn->prepare($sql);
+  // $stmt->execute([$user]);
+  // $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
   $_SESSION['logged'] = true;
   $_SESSION['name'] = $user;
-  $_SESSION['id'] = $result['id_user'];
+  // $_SESSION['id'] = $result['id_user'];
+  $_SESSION['id'] = $id;
   $_SESSION['date'] = $date;
   $_SESSION['watched'] = 0;
   $_SESSION['privilege'] = 0;
