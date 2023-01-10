@@ -5,7 +5,7 @@ if (!isset($_POST))
 $user = $_POST['username'];
 $pass = $_POST['password'];
 
-$conn = dbConn();
+$conn = dbConn() or die("Connection failed");
 
 $sql = "SELECT id_user,name,data_creazione as date,anime_visti as watched,privilege  
         FROM user 

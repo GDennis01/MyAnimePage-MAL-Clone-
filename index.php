@@ -58,7 +58,7 @@ $watched = $_SESSION['watched'];
 
 
   <?php
-  $conn = dbConn();
+  $conn = dbConn() or die("Connection failed");
   $sql = "SELECT MAL_ID,image,synopsis FROM anime_list ORDER BY RAND() LIMIT 3";
   $stmt = $conn->prepare($sql);
   $stmt->execute();
@@ -112,7 +112,7 @@ $watched = $_SESSION['watched'];
   <!-- Aside -->
   <aside>
     <?php
-    $conn = dbConn();
+    $conn = dbConn() or die("Connection failed");
     $sql = "SELECT count(*) FROM anime_user where id_user = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id_user]);

@@ -9,7 +9,7 @@ include 'api/utils.php';
 $user = $_SESSION['id'];
 $search = $_GET['id'] ?? $user; //if I access the page without a search parameter, I want to see my own page
 $editable = $user == $search; //if I'm looking at my own page, I want to be able to edit it
-$conn = dbConn();
+$conn = dbConn() or die("Connection failed");
 ?>
 <!DOCTYPE html>
 <html lang="en">

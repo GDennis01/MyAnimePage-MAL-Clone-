@@ -7,7 +7,7 @@ if (!isset($_SESSION['logged'])) {
 }
 if (!isset($_POST))
   return;
-$db = dbConn();
+$db = dbConn() or die("Connection failed");
 
 $user = $_POST['id_user'];
 $anime = $_POST['mal_id'];

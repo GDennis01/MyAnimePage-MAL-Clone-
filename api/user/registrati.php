@@ -6,7 +6,7 @@ if (!isset($_POST) || !isset($_POST['username']) || !isset($_POST['password'])) 
 }
 $user = $_POST['username'];
 $pass = $_POST['password'];
-$conn = dbConn();
+$conn = dbConn() or die("Connection failed");
 
 $sql = "SELECT name 
         FROM user 

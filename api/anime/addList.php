@@ -7,7 +7,7 @@ if (!isset($_SESSION['logged'])) {
 }
 if (!isset($_POST))
   return;
-$db = dbConn();
+$db = dbConn() or die("Connection failed");
 
 $anime = $_POST['mal_id'];
 $user = $_POST['id_user'];
@@ -16,8 +16,12 @@ $user = $_POST['id_user'];
 // $sql = "INSERT INTO anime_user (id_user,id_anime) VALUES ($user,$anime)";
 // $success = mysqli_query($db, $sql);
 $sql = "INSERT INTO anime_user (id_user,id_anime) VALUES (?,?)";
-$stmt = $db->prepare($sql);
-$success = $stmt->execute([$user, $anime]);
+try {
+  $stmt = $db->prepare($sql);
+  $success = $stmt->execute([$user, $anime]);
+} catch (PDOException $e) {
+  $success = false;
+}
 if ($success)
   echo json_encode("success");
 else

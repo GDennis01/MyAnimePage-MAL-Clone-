@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged'])) {
 }
 if (!isset($_POST))
   return;
-$db = dbConn();
+$db = dbConn() or die("Connection failed");
 $search = $_GET['search'];
 // $query = "SELECT MAL_ID as id, Name as name FROM anime_list WHERE LOWER(Name) LIKE '%$search%'";
 $query = "SELECT MAL_ID as id, Name as name FROM anime_list WHERE LOWER(Name) LIKE ?";

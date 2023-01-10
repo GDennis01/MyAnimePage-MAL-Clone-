@@ -6,7 +6,7 @@ if (!isset($_SESSION['logged'])) {
   return;
 }
 include 'api/utils.php';
-$conn = dbConn();
+$conn = dbConn() or die("Connection failed");
 
 $value = $_GET['id'];
 $id_user = $_SESSION['id'];
@@ -112,7 +112,7 @@ if ($stmt->rowCount() == 0) {
   </div>
 
   <!-- Reviews -->
-  <div class="row charaReview">
+  <div class="charaReview">
     <div class="col-1">
 
     </div>

@@ -96,6 +96,10 @@ $(document).ready(function () {
 //   // alert('Error, check console');
 //   // console.error(error);
 // }
+
+function emptyDiv() {
+  $("#myDropdown").empty();
+}
 /**
  * Api:homepage
  */

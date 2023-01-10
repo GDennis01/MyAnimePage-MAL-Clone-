@@ -43,8 +43,8 @@
             <option value="Anime" selected>Anime</option>
             <option value="User">User</option>
           </select>
-          <input type="search" placeholder="Anime or user page!" oninput="getAjaxRes()" onclick="openSearchDropdown()"
-            id="search_input">
+          <input type="search" placeholder="Anime or user page!" onfocusout="emptyDiv()" oninput="getAjaxRes()"
+            onclick="openSearchDropdown()" id="search_input">
           <div id="myDropdown" class="dropdown-content show">
           </div>
         </div>

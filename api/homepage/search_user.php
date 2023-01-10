@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged'])) {
 }
 if (!isset($_POST))
   return;
-$db = dbConn();
+$db = dbConn() or die("Connection failed");
 $search = $_GET['search'];
 // $query = "SELECT  id_user as id, name FROM user WHERE LOWER(name) LIKE '%$search%'";
 $query = "SELECT  id_user as id, name FROM user WHERE LOWER(name) LIKE ?";

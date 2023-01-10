@@ -7,11 +7,15 @@ if (!isset($_SESSION['logged'])) {
 }
 if (!isset($_POST))
   return;
-$db = dbConn();
+$db = dbConn() or die("Connection failed");
 $query = "SELECT MAL_ID FROM anime_list ORDER BY RAND() LIMIT 1";
-$stmt = $db->prepare($query);
-$stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+try {
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  echo $e->getMessage();
+}
 // $result = mysqli_query($db, $query);
 // $row = mysqli_fetch_assoc($result);
 echo $row['MAL_ID'];
