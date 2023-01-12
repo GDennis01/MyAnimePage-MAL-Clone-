@@ -27,8 +27,9 @@ if ($stmt->rowCount() == 0) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'templates/header.html' ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="css/animepage.css" rel="stylesheet">
+<?php include 'templates/header.html' ?>
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <script src="js/anime.js"></script>
 </head>
@@ -78,13 +79,16 @@ if ($stmt->rowCount() == 0) {
     $image = $anime['image'];
     ?>
     <!-- Anime info -->
-    <div id="animeInfo" class="col-3">
+    <div id="animeInfo" class="col-3 card" style="width: 24rem;">
       <!-- <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Anime image" id="animeImg"> -->
       <img src='<?= $image ?>' alt="Anime image" id="animeImg">
-      <div class="animeStats">
+      <div class="card-body">
+        <h4 class="card-title"><b><?= $name ?></b></h4>
+        <h5 class="card-text"><b><?= $jap_name ?></b></h5>
+      </div>
+      <div class="animeStats ">
         <ul>
-          <li><b>Anime name:</b> <?= $name ?></li>
-          <li><b>Japanese name:</b> <?= $jap_name ?></li>
+
           <li><b>Episodes:</b> <?= $episode ?></li>
           <li><b>Studio:</b> <?= $studio ?></li>
           <li><b>First aired:</b> <?= $premiered ?></li>
@@ -95,7 +99,7 @@ if ($stmt->rowCount() == 0) {
       </div>
     </div>
 
-    <!-- Anime controls: adding anime to own animelist, rate it(?) etc -->
+    <!-- Anime controls: adding anime to own animelist etc -->
     <div id="ctrlSyn" class="col-5">
       <div id="animeCtrl">
         <!-- bootstrap button -->
@@ -104,16 +108,24 @@ if ($stmt->rowCount() == 0) {
                                                                       } else {
                                                                         echo "onclick=\"addToList($value,$id_user)\"";
                                                                       }     ?>>
-
           <?= $text ?>
         </button>
-
-
+        <button id="btnRemove" type="button" class="btn btn-primary" <?php if (!$added) {
+                                                                        echo "style='display:none;'";
+                                                                      } else {
+                                                                        echo "style='display:block;' onclick=\"removeFromList($value,$id_user)\"";
+                                                                      }     ?>>
+          Remove from list
+        </button>
       </div>
       <!-- Anime description -->
-      <div id="animeSynopsis">
-        <p>
+      <div id="animeSynopsis" class="card">
+        <div class="card-header">
+          <h5>Synopsis</5>
+        </div>
+        <div class="card-body">
           <?= $syn ?>
+        </div>
       </div>
     </div>
 

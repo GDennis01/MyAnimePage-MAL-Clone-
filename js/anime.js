@@ -16,6 +16,35 @@ function addToList(mal_id, id_user) {
       if (response == "success") {
         $("#btnAddList").html("Already added to your anime page");
         $("#btnAddList").attr("disabled", true);
+        $("#btnRemove").css("display", "block");
+        $("#btnRemove").on("click", function () {
+          removeFromList(mal_id, id_user);
+        })
+      }
+    }
+  })
+}
+/**
+ * Api:anime
+ * @param {*} mal_id 
+ * @param {*} id_user 
+ */
+function removeFromList(mal_id, id_user) {
+  $.ajax({
+    url: "api/animepage/deleteEntry.php",
+    type: "POST",
+    data: { mal_id: mal_id, id_user: id_user },
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      if (response == "success") {
+        $("#btnAddList").html("Add to list");
+        $("#btnAddList").attr("disabled", false);
+        //add event listener on click addToList
+        $("#btnAddList").on("click", function () {
+          addToList(mal_id, id_user);
+        })
+        $("#btnRemove").css("display", "none");
       }
     }
   })

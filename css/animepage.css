@@ -7,9 +7,19 @@
   width: auto;
   height: 100%;
   border: 3px solid purple;
+  background-color: aquamarine !important;
   border-radius: 10px;
-  background-image: linear-gradient(aquamarine, rgb(0, 255, 255, 0.5));
+  background-image: linear-gradient(aquamarine, rgb(0, 255, 255, 0.5)) !important;
   /* clear: both; */
+}
+
+ul {
+  list-style-type: none;
+}
+
+.bg-Aqua {
+  background-color: aquamarine !important;
+  background-image: linear-gradient(aquamarine, rgb(0, 255, 255, 0.5)) !important;
 }
 
 #animeImg {
