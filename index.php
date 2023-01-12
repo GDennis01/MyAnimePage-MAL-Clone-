@@ -22,37 +22,6 @@ $watched = $_SESSION['watched'];
   <header>
 
   </header>
-  <!-- Script tag so JS run as soon as possible -->
-  <script>
-    // let random = [];
-    // //ajax call to generate 3 random mal_id
-    // $.ajax({
-    //   url: 'api/homepage/random.php',
-    //   type: 'POST',
-    //   success: function(data) {
-    //     random.push(data);
-    //     $.ajax({
-    //       url: 'api/homepage/random.php',
-    //       type: 'POST',
-    //       success: function(data) {
-    //         random.push(data);
-    //         $.ajax({
-    //           url: 'api/homepage/random.php',
-    //           type: 'POST',
-    //           success: function(data) {
-    //             random.push(data);
-    //             console.log(random);
-    //             for (let i = 0; i < 3; i++) {
-    //               sendApiRequest(random[i], i);
-    //             }
-    //           }
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
-  </script>
-
   <!-- NAVBAR -->
   <?php include('templates/navbar.html') ?>
 
