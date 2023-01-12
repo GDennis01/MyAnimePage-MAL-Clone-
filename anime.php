@@ -27,11 +27,13 @@ if ($stmt->rowCount() == 0) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="css/animepage.css" rel="stylesheet">
-<?php include 'templates/header.html' ?>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-<script src="js/anime.js"></script>
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="css/animepage.css" rel="stylesheet">
+  <?php include 'templates/header.html' ?>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <script src="js/anime.js"></script>
 </head>
 
 <body>
@@ -121,7 +123,7 @@ if ($stmt->rowCount() == 0) {
       <!-- Anime description -->
       <div id="animeSynopsis" class="card">
         <div class="card-header">
-          <h5>Synopsis</5>
+          <h5>Synopsis</h5>
         </div>
         <div class="card-body">
           <?= $syn ?>

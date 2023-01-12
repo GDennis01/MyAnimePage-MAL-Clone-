@@ -13,8 +13,12 @@ $conn = dbConn() or die("Connection failed");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'templates/header.html' ?>
-<script src="js/animepage.js"></script>
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <?php include 'templates/header.html' ?>
+  <link rel="stylesheet" href="css/myanimepage.css">
+  <script src="js/animepage.js"></script>
 </head>
 
 <body>
@@ -39,21 +43,22 @@ $conn = dbConn() or die("Connection failed");
   }
   ?>
   <!-- Printing a table with all anime -->
-  <div class="container">
-    <div class="row">
-      <div class="col">
+  <div class="container ">
+    <div class="row ">
+      <h1>My anime page</h1>
+      <div class="col mal">
         <?php if ($editable) { ?>
-          <h1>My anime page</h1>
         <?php } else { ?>
           <h1><?= $name ?>'s anime page</h1>
         <?php } ?>
-        <table class="table table-striped">
+        <table class="table table-striped mal ">
           <thead>
             <tr>
               <th scope="col"><b>Title</b></th>
               <th scope="col"><b>Episodes</b></th>
               <th scope="col"><b>Score</b></th>
               <th scope="col"><b>Studio</b></th>
+              <th scope="col"></th>
               <?php if ($editable) : ?>
                 <th scope="col"></th>
               <?php endif; ?>
@@ -62,15 +67,7 @@ $conn = dbConn() or die("Connection failed");
           </thead>
           <tbody>
             <?php
-            // error_reporting(0);
-            // $sql = "SELECT MAL_ID,Name,Episodes,Score,Studios FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime ";
             $sql = "SELECT * FROM anime_list JOIN anime_user ON anime_list.mal_id = anime_user.id_anime ";
-            // if ($editable) {
-            //   // $sql .= "WHERE anime_user.id_user = $user";
-            //   $sql .= "WHERE anime_user.id_user = ?";
-            // } else {
-            //   $sql .= "WHERE anime_user.id_user = ?";
-            // }
             $sql .= "WHERE anime_user.id_user = ?";
             $error = false;
             try {
@@ -94,7 +91,7 @@ $conn = dbConn() or die("Connection failed");
                     <td> <?= $row['Episodes'] ?> </td>
                     <td> <?= $row['Score'] ?> </td>
                     <td> <?= $row['Studios'] ?> </td>
-                    <td> <img src='<?= ($row['thumbnail']) ?> ' height="50px" width="50px"> </td>
+                    <td> <img src='<?= ($row['thumbnail']) ?> ' height="50" width="50" alt="thumbnail"> </td>
                     <!-- Buttons to edit(only if you are visiting your own page) -->
                     <?php if ($editable) : ?>
                       <td><button type='button' class='btn btn-danger' onclick="deleteEntry(<?= $id_user ?>,<?= $mal_id ?>)">Delete</button></td>
