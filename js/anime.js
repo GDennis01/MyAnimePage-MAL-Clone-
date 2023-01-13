@@ -18,9 +18,9 @@ function addToList(mal_id, id_user) {
         $("#btnAddList").html("Already added to your anime page");
         $("#btnAddList").attr("disabled", true);
         $("#btnRemove").css("display", "block");
-        $("#btnRemove").on("click", function () {
-          removeFromList(mal_id, id_user);
-        })
+        // $("#btnRemove").on("click", function () {
+        //   removeFromList(mal_id, id_user);
+        // })
       }
     }
   })
@@ -42,9 +42,9 @@ function removeFromList(mal_id, id_user) {
         $("#btnAddList").html("Add to list");
         $("#btnAddList").attr("disabled", false);
         //add event listener on click addToList
-        $("#btnAddList").on("click", function () {
-          addToList(mal_id, id_user);
-        })
+        // $("#btnAddList").on("click", function () {
+        //   addToList(mal_id, id_user);
+        // })
         $("#btnRemove").css("display", "none");
       }
     }

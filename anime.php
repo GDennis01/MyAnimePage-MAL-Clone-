@@ -106,14 +106,14 @@ if ($stmt->rowCount() == 0) {
       <div id="animeCtrl">
         <!-- bootstrap button -->
         <button id="btnAddList" type="button" class="btn btn-primary" <?php if ($added) {
-                                                                        echo "disabled='disabled'";
+                                                                        echo "disabled='disabled' onclick=\"addToList($value,$id_user)\"";
                                                                       } else {
                                                                         echo "onclick=\"addToList($value,$id_user)\"";
                                                                       }     ?>>
           <?= $text ?>
         </button>
         <button id="btnRemove" type="button" class="btn btn-primary" <?php if (!$added) {
-                                                                        echo "style='display:none;'";
+                                                                        echo "style='display:none;'  onclick=\"removeFromList($value,$id_user)\"";
                                                                       } else {
                                                                         echo "style='display:block;' onclick=\"removeFromList($value,$id_user)\"";
                                                                       }     ?>>
