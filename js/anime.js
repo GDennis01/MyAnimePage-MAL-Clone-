@@ -1,3 +1,4 @@
+/*TODO: location reload*/
 /*JS File with anime.php related functions such as 'adding to list an anime' or posting a review*/
 
 /**
