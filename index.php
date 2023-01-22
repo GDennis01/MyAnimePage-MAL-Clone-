@@ -109,7 +109,6 @@ $watched = $_SESSION['watched'];
   </ul>
 
 </aside>
-<!-- <button id="test_api" onclick="sendApiRequest()">Prova</button> -->
 <!-- Footer -->
 <?php include('templates/footer.html') ?>
 </body>

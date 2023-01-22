@@ -139,8 +139,7 @@ if ($stmt->rowCount() == 0) {
     </div>
     <div class="col-3">
       <textarea id="review" name="review" rows=3 cols=50>Write a review!</textarea>
-      <input id="btnReview" type="button" value="Submit" onclick="postReview()">
-      <!-- <input id="btnReview" type="button" value="Submit"> -->
+      <input id="btnReview" type="button" value="Submit">
     </div>
     <div class="col-4">
       <!-- Anime reviews -->
@@ -162,7 +161,11 @@ if ($stmt->rowCount() == 0) {
             while ($rows = $stmt->fetch(PDO::FETCH_ASSOC)) :   ?>
               <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?>
 
-                <?php if ($privilege == 1) { ?> <button class="delReview" onclick="deleteReview(<?= $rows['id_review'] ?>)"><i class="fa-solid fa-trash"></i></button></li> <?php } ?>
+                <?php if ($privilege == 1) { ?>
+                  <button id="delReview<?= $rows['id_review'] ?>" class="review-entry">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+              </li> <?php } ?>
         <?php
             endwhile;
             unset($db);
