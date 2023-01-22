@@ -21,12 +21,14 @@ $sql = "INSERT INTO review (id_user,id_anime,text) VALUES (?,?,?)";
 try {
   $stmt = $db->prepare($sql);
   $success = $stmt->execute([$user, $anime, $review]);
+  //lastInsertId() returns the id of the last inserted row
+  $id = $db->lastInsertId();
 } catch (PDOException $e) {
   $success = false;
 }
 // $success = mysqli_query($db, $sql);
 
 if ($success)
-  echo json_encode("success");
+  echo json_encode(["esito" => "success", "id" => $id, "name" => $_SESSION['name']]);
 else
-  echo json_encode("error");
+  echo json_encode(["esito" => "error"]);

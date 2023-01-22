@@ -5,7 +5,15 @@ var anime_id = window.location.href.split("=")[1];
 $(document).ready(function () {
   $("#btnAddList").on("click", addToList);
   $("#btnRemove").on("click", removeFromList);
-  $("#btnAddReview").on("click", postReview);
+  $("#btnReview").on("click", postReview);
+
+  $(".review-entry").each(function () {
+    $(this).on("click", function () {
+      var id = $(this).attr("id").split("delReview")[1];
+      console.l
+      deleteReview(id);
+    });
+  });
 
 });
 /**
@@ -65,22 +73,34 @@ function removeFromList() {
  * @param {Integer} id_user 
  */
 function postReview() {
-  let review = $("#review").val();
+  var reviewText = $("#review").val();
   console.log(review);
   $.ajax({
     url: "api/anime/postReview.php",
     type: "POST",
     // data: { mal_id: mal_id, review: review },
-    data: { mal_id: anime_id, review: review },
+    data: { mal_id: anime_id, review: reviewText },
     dataType: "json",
     success: function (response) {
       console.log(response);
-      if (response == "success") {
-        location.reload();
-        // $("#review").val("");
-        // $("#review-error").html("Review posted!");
-      } else {
+      //split the response to get the id of the review
+      if (response.esito == "error") {
         $("#review-error").html(response);
+        return;
+      }
+      let user = response.name;
+      let id_review = response.id;
+      let review = "<li><b>" + user + "</b>: " + reviewText;
+      let addEvent = false;
+      if (user == "admin") {
+        addEvent = true;
+        review = review + "<button id='delReview" + id_review + "' class='review-entry' > <i class='fa-solid fa-trash'></i></button ></li > ";
+      }
+      $("#animeReviews>ul").append(review);
+      if (addEvent) {
+        $("#delReview" + id_review).on("click", function () {
+          deleteReview(id_review);
+        });
       }
     }
   })
@@ -99,7 +119,8 @@ function deleteReview(id_review) {
     success: function (response) {
       console.log(response);
       if (response == "success") {
-        location.reload();
+        // location.reload();
+        $("#delReview" + id_review).parent().remove();
       } else {
         $("#review-error").html(response);
       }
