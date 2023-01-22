@@ -25,7 +25,6 @@ function addToList() {
   $.ajax({
     url: "api/anime/addList.php",
     type: "POST",
-    // data: { mal_id: mal_id },
     data: { mal_id: anime_id },
     dataType: "json",
     success: function (response) {
@@ -34,9 +33,6 @@ function addToList() {
         $("#btnAddList").html("Already added to your anime page");
         $("#btnAddList").attr("disabled", true);
         $("#btnRemove").css("display", "block");
-        // $("#btnRemove").on("click", function () {
-        //   removeFromList(mal_id, id_user);
-        // })
       }
     }
   })
@@ -50,7 +46,6 @@ function removeFromList() {
   $.ajax({
     url: "api/animepage/deleteEntry.php",
     type: "POST",
-    // data: { mal_id: mal_id },
     data: { mal_id: anime_id },
     dataType: "json",
     success: function (response) {
@@ -58,10 +53,6 @@ function removeFromList() {
       if (response == "success") {
         $("#btnAddList").html("Add to list");
         $("#btnAddList").attr("disabled", false);
-        //add event listener on click addToList
-        // $("#btnAddList").on("click", function () {
-        //   addToList(mal_id, id_user);
-        // })
         $("#btnRemove").css("display", "none");
       }
     }
@@ -80,12 +71,10 @@ function postReview() {
   $.ajax({
     url: "api/anime/postReview.php",
     type: "POST",
-    // data: { mal_id: mal_id, review: review },
     data: { mal_id: anime_id, review: reviewText },
     dataType: "json",
     success: function (response) {
       console.log(response);
-      //split the response to get the id of the review
       if (response.esito == "error") {
         $("#review-error").html("Error while posting review");
         return;
@@ -121,7 +110,6 @@ function deleteReview(id_review) {
     success: function (response) {
       console.log(response);
       if (response == "success") {
-        // location.reload();
         $("#delReview" + id_review).parent().remove();
       } else {
         $("#review-error").html("Error while deleting review");

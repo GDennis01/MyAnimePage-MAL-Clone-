@@ -39,14 +39,8 @@ if ($num_rows == 1) { //Se la query restituisce una table con UNA sola riga,vuol
 
   session_start();
   $id = $conn->lastInsertId();
-  // $sql = "SELECT id_user from user where name = ?";
-  // $stmt = $conn->prepare($sql);
-  // $stmt->execute([$user]);
-  // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
   $_SESSION['logged'] = true;
   $_SESSION['name'] = $user;
-  // $_SESSION['id'] = $result['id_user'];
   $_SESSION['id'] = $id;
   $_SESSION['date'] = $date;
   $_SESSION['watched'] = 0;

@@ -17,6 +17,4 @@ try {
   echo "error";
   return;
 }
-// $result = mysqli_query($db, $query);
-// $row = mysqli_fetch_assoc($result);
 echo $row['MAL_ID'];

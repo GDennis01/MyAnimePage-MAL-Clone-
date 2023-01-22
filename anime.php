@@ -87,7 +87,6 @@ if ($stmt->rowCount() == 0) {
     ?>
     <!-- Anime info -->
     <div id="animeInfo" class="col-3 card" style="width: 24rem;">
-      <!-- <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Anime image" id="animeImg"> -->
       <img src='<?= $image ?>' alt="Anime image" id="animeImg">
       <div class="card-body">
         <h4 class="card-title"><b><?= $name ?></b></h4>

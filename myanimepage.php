@@ -82,8 +82,6 @@ $conn = dbConn() or die("Connection failed");
 
 
             $id_user = $_SESSION['id'];
-            // if (mysqli_num_rows($result) > 0) {
-            // while ($row = mysqli_fetch_assoc($result)) :
             if ($error === false) {
               if ($stmt->rowCount() > 0) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) :

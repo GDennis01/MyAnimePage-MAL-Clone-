@@ -12,7 +12,6 @@ $db = dbConn() or die("Connection failed");
 
 $id_review = $_POST['id_review'];
 
-//query that inserts data into db
 $sql = "DELETE FROM review WHERE id_review=?";
 try {
   $stmt = $db->prepare($sql);
@@ -20,7 +19,6 @@ try {
 } catch (PDOException $e) {
   $success = false;
 }
-// $success = mysqli_query($db, $sql);
 if ($success)
   echo json_encode("success");
 else

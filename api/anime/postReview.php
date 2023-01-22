@@ -11,12 +11,9 @@ if (!isset($_POST))
 $db = dbConn() or die("Connection failed");
 
 $anime = $_POST['mal_id'];
-// $user = $_POST['id_user'];
 $user = $_SESSION['id'];
 $review = $_POST['review'];
 
-//query that inserts data into db
-// $sql = "INSERT INTO review (id_user,id_anime,text) VALUES ($user,$anime,'$review')";
 $sql = "INSERT INTO review (id_user,id_anime,text) VALUES (?,?,?)";
 try {
   $stmt = $db->prepare($sql);
@@ -26,8 +23,6 @@ try {
 } catch (PDOException $e) {
   $success = false;
 }
-// $success = mysqli_query($db, $sql);
-
 if ($success)
   echo json_encode(["esito" => "success", "id" => $id, "name" => $_SESSION['name']]);
 else

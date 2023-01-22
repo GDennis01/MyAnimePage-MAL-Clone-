@@ -1,6 +1,3 @@
-/**
- * Api:animepage
- */
 $(document).ready(function () {
   //foreach entry in the table with class 'anime-entry', add event listener on click with parameter set to the id of the entry
   $(".anime-entry").each(function () {
@@ -22,8 +19,6 @@ function deleteEntry(mal_id) {
         $("#" + mal_id).empty();
       else
         $("#error").html("Error deleting entry from the list");
-      //delete the entry from the table
-
     }
   });
 }

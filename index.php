@@ -51,8 +51,6 @@ $watched = $_SESSION['watched'];
     <?php if ($error === false) : ?>
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <!-- Actual carousel -->
-        <!-- ids and img should be replaced when body loads by an ajax function that generates 3 random number from 
-          the pool of mal ids in the database -->
 
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -79,7 +77,6 @@ $watched = $_SESSION['watched'];
       </div>
       <!-- Current active carousel anime synopsis-->
       <div id="carouselSynopsis">
-        <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum officiis, accusamus optio quos assumenda magnam ut est nemo dignissimos, temporibus numquam libero veritatis rerum odio inventore ipsam beatae, eligendi eveniet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ab voluptates et in nulla consectetur amet at error voluptas veniam illum delectus repellendus similique tenetur libero repellat sed, illo minus.</p> -->
         <p id="syn0" class="synopsis"><?= $anime_1['synopsis'] ?></p>
         <p id="syn1" class="synopsis"><?= $anime_2['synopsis'] ?></p>
         <p id="syn2" class="synopsis"><?= $anime_3['synopsis'] ?></p>
