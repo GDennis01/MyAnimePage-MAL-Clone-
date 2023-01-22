@@ -1,4 +1,15 @@
 /*JS File with user-related functions, such as login,sign-up etc*/
+$(document).ready(function () {
+  if (window.location.href.includes("login.html")) {
+    $('#btnLogin').on('click', checkLogin);
+    $('#btnReg').on('click', redirectRegistrati);
+    console.log("Added event listener to login button!");
+  } else {
+    $('#btnLogin').on('click', redirectLogin);
+    $('#btnReg').on('click', checkRegistrati);
+    console.log("Added event listener to login button!");
+  }
+});
 function redirectRegistrati() { window.location.href = 'registrati.html'; }
 function redirectLogin() { window.location.href = 'login.html'; }
 function setKeyframe(id) {

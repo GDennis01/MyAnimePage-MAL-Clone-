@@ -7,12 +7,6 @@ Attach an event listener whenever the carousel animation ends
 This is useful so that we can change the synopsis text
 */
 $(document).ready(function () {
-  //right after the animation starts
-  // $('#carouselExampleControls').on('slide.bs.carousel', function () {
-  //   //alert("Slide Event");
-  //   console.log('slid event');
-  // });
-
   $('#carouselExampleControls').on('slid.bs.carousel', function (event) {
     for (let i = 0; i < 3; i++) {
       if (event.to == i) {
@@ -21,6 +15,11 @@ $(document).ready(function () {
         $("#syn" + i).hide();
     }
   });
+
+  $('#randomAnime').on('click', randomAnime);
+  $('#logoutIcon').on('click', logout);
+  $('#search_input').on('input', getAjaxRes);
+  // $('#search_input').on('click', openSearchDropdown);
 });
 
 
