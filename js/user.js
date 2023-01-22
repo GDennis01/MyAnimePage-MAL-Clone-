@@ -25,10 +25,6 @@ function checkLogin() {
       } else {
         $("#login-error").html(response);
         setKeyframe("login");
-        //add .shake class to trigger keyframe
-
-        //remove .shake class after 1s
-
       }
     }
   })

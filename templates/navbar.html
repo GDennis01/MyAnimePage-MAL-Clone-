@@ -24,19 +24,19 @@
 
       </ul>
       <!-- Search bar per gli anime -->
-      <form class="d-flex" role="search" method="POST" action="anime.php">
-        <div class="dropdown">
-          <select id="search_option">
-            <option value="Anime" selected>Anime</option>
-            <option value="User">User</option>
-          </select>
-          <input type="search" placeholder="Anime or user page!" oninput="getAjaxRes()" onclick="openSearchDropdown()"
-            id="search_input">
-          <div id="myDropdown" class="dropdown-content show">
-          </div>
+      <!-- <form class="d-flex" role="search" method="POST" action="anime.php"> -->
+      <div class="dropdown">
+        <select id="search_option">
+          <option value="Anime" selected>Anime</option>
+          <option value="User">User</option>
+        </select>
+        <input type="search" placeholder="Anime or user page!" oninput="getAjaxRes()" onclick="openSearchDropdown()"
+          id="search_input">
+        <div id="myDropdown" class="dropdown-content show">
         </div>
-        <i id="logoutIcon" class="fa fa-sign-out fa-lg" aria-hidden="false" onclick="logout()"></i>
-      </form>
+      </div>
+      <i id="logoutIcon" class="fa fa-sign-out fa-lg" aria-hidden="false" onclick="logout()"></i>
+      <!-- </form> -->
     </div>
   </div>
 </nav>
