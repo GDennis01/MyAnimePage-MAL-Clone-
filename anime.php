@@ -133,49 +133,45 @@ if ($stmt->rowCount() == 0) {
   </div>
 
   <!-- Reviews -->
-  <div class="charaReview">
-    <div class="col-1">
-
-    </div>
+  <div class="row charaReview">
+    <div class="col-1"></div>
     <div class="col-3">
       <textarea id="review" name="review" rows=3 cols=50>Write a review!</textarea>
       <input id="btnReview" type="button" value="Submit">
     </div>
-    <div class="col-4">
-      <!-- Anime reviews -->
-      <div id="animeReviews">
-        <h3>Reviews</h3>
-        <ul>
-          <!-- print all reviews -->
-          <?php
-          unset($stmt);
-          $error = false;
-          $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = ?";
-          try {
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([$value]);
-          } catch (PDOException $e) {
-            $error = true;
-          }
-          if ($error === false) :
-            while ($rows = $stmt->fetch(PDO::FETCH_ASSOC)) :   ?>
-              <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?>
-
-                <?php if ($privilege == 1) { ?>
-                  <button id="delReview<?= $rows['id_review'] ?>" class="review-entry">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-              </li> <?php } ?>
+    <!-- Anime reviews -->
+    <div id="animeReviews" class="col-4">
+      <h3>Reviews</h3>
+      <ul>
+        <!-- print all reviews -->
         <?php
-            endwhile;
-            unset($db);
-          endif;
-        ?>
-        </ul>
-      </div>
-      <div id="review-error">
+        unset($stmt);
+        $error = false;
+        $sql = "SELECT * FROM review JOIN user ON review.id_user = user.id_user WHERE id_anime = ?";
+        try {
+          $stmt = $conn->prepare($sql);
+          $stmt->execute([$value]);
+        } catch (PDOException $e) {
+          $error = true;
+        }
+        if ($error === false) :
+          while ($rows = $stmt->fetch(PDO::FETCH_ASSOC)) :   ?>
+            <li><b><?= $rows['name'] ?></b>: <?= $rows['text'] ?>
 
-      </div>
+              <?php if ($privilege == 1) { ?>
+                <button id="delReview<?= $rows['id_review'] ?>" class="review-entry">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+            </li> <?php } ?>
+      <?php
+          endwhile;
+          unset($db);
+        endif;
+      ?>
+      </ul>
+    </div>
+    <div id="review-error">
+
     </div>
   </div>
 
