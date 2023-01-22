@@ -6,7 +6,7 @@ if (!isset($_SESSION['logged'])) {
   header("Location: ../../login.html");
   return;
 }
-if (!isset($_POST))
+if (!isset($_GET))
   return;
 $db = dbConn() or die("Connection failed");
 $search = $_GET['search'];

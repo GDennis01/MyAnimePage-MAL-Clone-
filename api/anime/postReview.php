@@ -11,7 +11,8 @@ if (!isset($_POST))
 $db = dbConn() or die("Connection failed");
 
 $anime = $_POST['mal_id'];
-$user = $_POST['id_user'];
+// $user = $_POST['id_user'];
+$user = $_SESSION['id'];
 $review = $_POST['review'];
 
 //query that inserts data into db

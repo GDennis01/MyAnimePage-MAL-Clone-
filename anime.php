@@ -12,6 +12,7 @@ $value = $_GET['id'];
 $id_user = $_SESSION['id'];
 $privilege = $_SESSION['privilege'];
 
+
 $sql = "SELECT * FROM anime_list WHERE mal_id = ?";
 try {
   $stmt = $conn->prepare($sql);
@@ -106,16 +107,16 @@ if ($stmt->rowCount() == 0) {
       <div id="animeCtrl">
         <!-- bootstrap button -->
         <button id="btnAddList" type="button" class="btn btn-primary" <?php if ($added) {
-                                                                        echo "disabled='disabled' onclick=\"addToList($value,$id_user)\"";
+                                                                        echo "disabled='disabled' onclick=\"addToList($value)\"";
                                                                       } else {
-                                                                        echo "onclick=\"addToList($value,$id_user)\"";
+                                                                        echo "onclick=\"addToList($value)\"";
                                                                       }     ?>>
           <?= $text ?>
         </button>
         <button id="btnRemove" type="button" class="btn btn-primary" <?php if (!$added) {
-                                                                        echo "style='display:none;'  onclick=\"removeFromList($value,$id_user)\"";
+                                                                        echo "style='display:none;'  onclick=\"removeFromList($value)\"";
                                                                       } else {
-                                                                        echo "style='display:block;' onclick=\"removeFromList($value,$id_user)\"";
+                                                                        echo "style='display:block;' onclick=\"removeFromList($value)\"";
                                                                       }     ?>>
           Remove from list
         </button>

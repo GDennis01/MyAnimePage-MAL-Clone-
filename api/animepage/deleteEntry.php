@@ -9,7 +9,8 @@ if (!isset($_POST))
   return;
 $db = dbConn() or die("Connection failed");
 
-$user = $_POST['id_user'];
+// $user = $_POST['id_user'];
+$user = $_SESSION['id'];
 $anime = $_POST['mal_id'];
 
 //query that inserts data into db

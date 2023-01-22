@@ -6,11 +6,11 @@
  * @param {*} mal_id id of myanimelist entry in the database
  * @param {*} id_user id of the user in the user table
  */
-function addToList(mal_id, id_user) {
+function addToList(mal_id) {
   $.ajax({
     url: "api/anime/addList.php",
     type: "POST",
-    data: { mal_id: mal_id, id_user: id_user },
+    data: { mal_id: mal_id },
     dataType: "json",
     success: function (response) {
       console.log(response);
@@ -30,11 +30,11 @@ function addToList(mal_id, id_user) {
  * @param {*} mal_id 
  * @param {*} id_user 
  */
-function removeFromList(mal_id, id_user) {
+function removeFromList(mal_id) {
   $.ajax({
     url: "api/animepage/deleteEntry.php",
     type: "POST",
-    data: { mal_id: mal_id, id_user: id_user },
+    data: { mal_id: mal_id },
     dataType: "json",
     success: function (response) {
       console.log(response);
@@ -55,13 +55,13 @@ function removeFromList(mal_id, id_user) {
  * @param {Integer} mal_id 
  * @param {Integer} id_user 
  */
-function postReview(mal_id, id_user) {
+function postReview(mal_id) {
   let review = $("#review").val();
   console.log(review);
   $.ajax({
     url: "api/anime/postReview.php",
     type: "POST",
-    data: { mal_id: mal_id, id_user: id_user, review: review },
+    data: { mal_id: mal_id, review: review },
     dataType: "json",
     success: function (response) {
       console.log(response);
