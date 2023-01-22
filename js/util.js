@@ -19,7 +19,6 @@ $(document).ready(function () {
   $('#randomAnime').on('click', randomAnime);
   $('#logoutIcon').on('click', logout);
   $('#search_input').on('input', getAjaxRes);
-  // $('#search_input').on('click', openSearchDropdown);
 });
 
 
@@ -83,8 +82,6 @@ function randomAnime() {
     success: function (response) {
       if (response !== "error")
         window.location.href = "anime.php?id=" + response;
-      // console.log(response);
-      //redirect
     }
   })
 }
@@ -95,19 +92,8 @@ function logout() {
     url: "api/user/logout.php",
     type: "GET",
     success: function (response) {
-      // console.log(response);
       window.location.href = "index.php";
     }
   })
 
 }
-// function appendSelectedAnime() {
-//   let id = event.target.id;
-//   let title = event.target.innerHTML;
-//   let anime = `<div class="anime" id="${id}">${title}</div>`;
-//   $("#selected-anime").append(anime);
-// }
-
-// function goesToAnimePage($param) {
-//   window.location.href = "anime.php?id=" + $param;
-// }
