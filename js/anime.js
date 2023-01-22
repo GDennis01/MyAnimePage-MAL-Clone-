@@ -74,7 +74,9 @@ function removeFromList() {
  */
 function postReview() {
   var reviewText = $("#review").val();
-  console.log(review);
+  //parse it from xss 
+  var reviewText = $("<div>" + reviewText + "</div>").text();//to prevent xss
+  console.log(reviewText);
   $.ajax({
     url: "api/anime/postReview.php",
     type: "POST",

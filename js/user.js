@@ -45,13 +45,11 @@ function checkRegistrati() {
   let password = $("#pw").val();
 
   //check if username respects the regex [A-Za-z][A-Za-z0-9]{5,15}
-  let regex = /^[A-Za-z][A-Za-z0-9]{5,15}$/;
-  if (!regex.test(username)) {
-    $("#login-error").html("Username must be between 6 and 16 characters and can only contain letters and numbers and must start with a letter");
+  let regex = /^[A-Za-z][A-Za-z0-9]{8,15}$/;
+  if (!regex.test(password) || !regex.test(username)) {
+    $("#login-error").html("Username and Password must be between 8 and 16 characters and can only contain letters and numbers and must start with a letter");
     setKeyframe("registrati");
     return;
-  } else {
-    // $("#login-error").html("Success");
   }
   $.ajax({
     url: "api/user/registrati.php",
