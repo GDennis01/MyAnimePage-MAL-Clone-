@@ -20,6 +20,8 @@ function deleteEntry(mal_id) {
     success: function (response) {
       if (response == "success")
         $("#" + mal_id).empty();
+      else
+        $("#error").html("Error deleting entry from the list");
       //delete the entry from the table
 
     }

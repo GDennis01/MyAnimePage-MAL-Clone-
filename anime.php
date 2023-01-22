@@ -19,11 +19,13 @@ try {
   $stmt->execute([$value]);
 } catch (PDOException $e) {
   header("Location: index.php");
+  return;
 }
 
 // If the anime is not in the database, redirect to the index page
 if ($stmt->rowCount() == 0) {
   header("Location: index.php");
+  return;
 }
 ?>
 <!DOCTYPE html>
@@ -39,8 +41,10 @@ if ($stmt->rowCount() == 0) {
 
 <body>
   <?php include 'templates/navbar.html' ?>
+
+  <div id="review-error></div>
   <!-- grid -->
-  <div class="row info&stat">
+  <div class=" row info&stat">
     <!-- Anime info column -->
     <div class="col-1">
 

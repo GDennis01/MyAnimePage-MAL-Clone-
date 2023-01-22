@@ -87,7 +87,7 @@ function postReview() {
       console.log(response);
       //split the response to get the id of the review
       if (response.esito == "error") {
-        $("#review-error").html(response);
+        $("#review-error").html("Error while posting review");
         return;
       }
       let user = response.name;
@@ -124,7 +124,7 @@ function deleteReview(id_review) {
         // location.reload();
         $("#delReview" + id_review).parent().remove();
       } else {
-        $("#review-error").html(response);
+        $("#review-error").html("Error while deleting review");
       }
     }
   })

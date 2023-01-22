@@ -31,17 +31,20 @@ $conn = dbConn() or die("Connection failed");
       $stmt->execute([$search]);
     } catch (PDOException $e) {
       header("Location: myanimepage.php"); //going to my own myanimepage
+      return;
     }
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $name = $result['name'] ?? "Utente non trovato";
-
-    if ($name == "Utente non trovato")
+    if ($name == "Utente non trovato") {
       header("Location: myanimepage.php"); //going to my own myanimepage
+      return;
+    }
 
     unset($stmt);
   }
   ?>
+  <div id="error"></div>
   <!-- Printing a table with all anime -->
   <div class="container ">
     <div class="row ">
