@@ -1,16 +1,24 @@
 /*TODO: location reload*/
 /*JS File with anime.php related functions such as 'adding to list an anime' or posting a review*/
 
+var anime_id = window.location.href.split("=")[1];
+$(document).ready(function () {
+  $("#btnAddList").on("click", addToList);
+  $("#btnRemove").on("click", removeFromList);
+  $("#btnAddReview").on("click", postReview);
+
+});
 /**
  * Api:anime
  * @param {*} mal_id id of myanimelist entry in the database
  * @param {*} id_user id of the user in the user table
  */
-function addToList(mal_id) {
+function addToList() {
   $.ajax({
     url: "api/anime/addList.php",
     type: "POST",
-    data: { mal_id: mal_id },
+    // data: { mal_id: mal_id },
+    data: { mal_id: anime_id },
     dataType: "json",
     success: function (response) {
       console.log(response);
@@ -30,11 +38,12 @@ function addToList(mal_id) {
  * @param {*} mal_id 
  * @param {*} id_user 
  */
-function removeFromList(mal_id) {
+function removeFromList() {
   $.ajax({
     url: "api/animepage/deleteEntry.php",
     type: "POST",
-    data: { mal_id: mal_id },
+    // data: { mal_id: mal_id },
+    data: { mal_id: anime_id },
     dataType: "json",
     success: function (response) {
       console.log(response);
@@ -55,13 +64,14 @@ function removeFromList(mal_id) {
  * @param {Integer} mal_id 
  * @param {Integer} id_user 
  */
-function postReview(mal_id) {
+function postReview() {
   let review = $("#review").val();
   console.log(review);
   $.ajax({
     url: "api/anime/postReview.php",
     type: "POST",
-    data: { mal_id: mal_id, review: review },
+    // data: { mal_id: mal_id, review: review },
+    data: { mal_id: anime_id, review: review },
     dataType: "json",
     success: function (response) {
       console.log(response);

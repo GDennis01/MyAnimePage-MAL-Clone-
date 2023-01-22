@@ -2,7 +2,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['logged'])) {
-  header("Location: login.php");
+  header("Location: login.html");
   return;
 }
 include 'api/utils.php';
@@ -94,9 +94,8 @@ $conn = dbConn() or die("Connection failed");
                     <td> <img src='<?= ($row['thumbnail']) ?> ' height="50" width="50" alt="thumbnail"> </td>
                     <!-- Buttons to edit(only if you are visiting your own page) -->
                     <?php if ($editable) : ?>
-                      <td><button type='button' class='btn btn-danger' onclick="deleteEntry(<?= $id_user ?>,<?= $mal_id ?>)">Delete</button></td>
-                      <!-- <td><button type='button' class='btn btn-info' onclick="goesToAnimePage(<?php //$mal_id;
-                                                                                                    ?>)">Visit Anime Page</button></td> -->
+                      <td><button id="delete<?= $mal_id ?>" type='button' class='btn btn-danger anime-entry'>Delete</button></td>
+
                     <?php endif; ?>
 
                   </tr>

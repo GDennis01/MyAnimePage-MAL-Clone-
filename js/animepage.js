@@ -1,11 +1,21 @@
 /**
  * Api:animepage
  */
-function deleteEntry(id_user, mal_id) {
+$(document).ready(function () {
+  //foreach entry in the table with class 'anime-entry', add event listener on click with parameter set to the id of the entry
+  $(".anime-entry").each(function () {
+    $(this).on("click", function () {
+      //the id is in format btn<id of the entry in the database>, split it
+      var id = $(this).attr("id").split("delete")[1];
+      deleteEntry(id);
+    });
+  });
+});
+function deleteEntry(mal_id) {
   $.ajax({
     url: "api/animepage/deleteEntry.php",
     type: "POST",
-    data: { id_user: id_user, mal_id: mal_id },
+    data: { mal_id: mal_id },
     dataType: "json",
     success: function (response) {
       if (response == "success")

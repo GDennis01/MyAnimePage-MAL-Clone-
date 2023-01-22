@@ -2,13 +2,13 @@
 <?php
 session_start();
 if (!isset($_SESSION['logged'])) {
-  header("Location: login.php");
+  header("Location: login.html");
   return;
 }
 include 'api/utils.php';
 $conn = dbConn() or die("Connection failed");
 
-$value = $_GET['id'];
+$value = $_GET['id'] ?? -1;
 $id_user = $_SESSION['id'];
 $privilege = $_SESSION['privilege'];
 
@@ -107,16 +107,14 @@ if ($stmt->rowCount() == 0) {
       <div id="animeCtrl">
         <!-- bootstrap button -->
         <button id="btnAddList" type="button" class="btn btn-primary" <?php if ($added) {
-                                                                        echo "disabled='disabled' onclick=\"addToList($value)\"";
-                                                                      } else {
-                                                                        echo "onclick=\"addToList($value)\"";
-                                                                      }     ?>>
+                                                                        echo "disabled='disabled'";
+                                                                      } ?>>
           <?= $text ?>
         </button>
         <button id="btnRemove" type="button" class="btn btn-primary" <?php if (!$added) {
-                                                                        echo "style='display:none;'  onclick=\"removeFromList($value)\"";
+                                                                        echo "style='display:none;'  ";
                                                                       } else {
-                                                                        echo "style='display:block;' onclick=\"removeFromList($value)\"";
+                                                                        echo "style='display:block;'";
                                                                       }     ?>>
           Remove from list
         </button>
@@ -141,7 +139,8 @@ if ($stmt->rowCount() == 0) {
     </div>
     <div class="col-3">
       <textarea id="review" name="review" rows=3 cols=50>Write a review!</textarea>
-      <input type="button" value="Submit" onclick="postReview(<?= $value ?>,<?= $id_user ?>)">
+      <input id="btnReview" type="button" value="Submit" onclick="postReview()">
+      <!-- <input id="btnReview" type="button" value="Submit"> -->
     </div>
     <div class="col-4">
       <!-- Anime reviews -->
