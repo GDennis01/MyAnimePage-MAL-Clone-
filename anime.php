@@ -42,7 +42,7 @@ if ($stmt->rowCount() == 0) {
 <body>
   <?php include 'templates/navbar.html' ?>
 
-  <div id="review-error></div>
+  <div id="review-error"></div>
   <!-- grid -->
   <div class=" row info&stat">
     <!-- Anime info column -->
@@ -141,7 +141,7 @@ if ($stmt->rowCount() == 0) {
     <div class="col-1"></div>
     <div class="col-3">
       <textarea id="review" name="review" rows=3 cols=50>Write a review!</textarea>
-      <input id="btnReview" type="button" value="Submit">
+      <input id="btnReview" type="button" value="Pubblica recensione">
     </div>
     <!-- Anime reviews -->
     <div id="animeReviews" class="col-4">
